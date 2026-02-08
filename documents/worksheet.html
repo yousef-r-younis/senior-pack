@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senior Project Topic Brainstorming Worksheet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f7fafc;
+            padding: 40px;
+            color: #2d3748;
+        }
+
+        .worksheet {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .header h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #718096;
+        }
+
+        .student-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #edf2f7;
+            border-radius: 8px;
+        }
+
+        .student-info label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .student-info input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e2e8f0;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .idea-section {
+            margin-bottom: 40px;
+            padding: 25px;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+        }
+
+        .idea-section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px dashed #e2e8f0;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .question label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 8px;
+            color: #4a5568;
+        }
+
+        .question input[type="text"],
+        .question textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 5px;
+            font-size: 1em;
+            font-family: inherit;
+        }
+
+        .question textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .question input:focus,
+        .question textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .rating-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .rating-section input {
+            width: 60px;
+            text-align: center;
+        }
+
+        .rating-hint {
+            color: #718096;
+            font-size: 0.9em;
+        }
+
+        .framework-reminder {
+            background: #f0fff4;
+            border-left: 4px solid #48bb78;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+
+        .framework-reminder h3 {
+            color: #48bb78;
+            margin-bottom: 10px;
+        }
+
+        .framework-reminder ul {
+            margin-left: 20px;
+            color: #4a5568;
+        }
+
+        .framework-reminder li {
+            margin-bottom: 5px;
+        }
+
+        .print-button {
+            display: block;
+            width: 200px;
+            margin: 30px auto 0;
+            padding: 15px 30px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .print-button:hover {
+            background: #5a67d8;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e2e8f0;
+            color: #718096;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 20px;
+            }
+
+            .worksheet {
+                box-shadow: none;
+                padding: 20px;
+            }
+
+            .print-button,
+            .back-link {
+                display: none;
+            }
+
+            .idea-section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="worksheet">
+        <a href="module1.html" class="back-link">← Back to Module 1</a>
+        
+        <div class="header">
+            <h1>🎯 Senior Project Topic Brainstorming Worksheet</h1>
+            <p>LIU Engineering Club - Senior Project Success Workshop</p>
+        </div>
+
+        <div class="student-info">
+            <div>
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" placeholder="Enter your name">
+            </div>
+            <div>
+                <label for="date">Date:</label>
+                <input type="text" id="date" placeholder="Enter date">
+            </div>
+            <div>
+                <label for="major">Major/Concentration:</label>
+                <input type="text" id="major" placeholder="e.g., CCE, CS, EE">
+            </div>
+            <div>
+                <label for="advisor">Advisor Name:</label>
+                <input type="text" id="advisor" placeholder="Enter advisor name">
+            </div>
+        </div>
+
+        <div class="framework-reminder">
+            <h3>📋 Remember the 4-Question Framework:</h3>
+            <ul>
+                <li><strong>1.</strong> Does it solve a REAL problem?</li>
+                <li><strong>2.</strong> Does it showcase MULTIPLE skills/subfields?</li>
+                <li><strong>3.</strong> Can you REALISTICALLY finish it?</li>
+                <li><strong>4.</strong> Will it look good on your resume/portfolio?</li>
+            </ul>
+        </div>
+
+        <!-- Idea 1 -->
+        <div class="idea-section">
+            <h2>💡 Idea #1</h2>
+            
+            <div class="question">
+                <label for="idea1-title">Project Title/Concept:</label>
+                <input type="text" id="idea1-title" placeholder="Give your idea a name">
+            </div>
+
+            <div class="question">
+                <label for="idea1-problem">What problem does it solve?</label>
+                <textarea id="idea1-problem" placeholder="Describe the real-world problem this addresses..."></textarea>
+            </div>
+
+            <div class="question">
+                <label for="idea1-skills">What skills/subfields does it showcase?</label>
+                <textarea id="idea1-skills" placeholder="e.g., Networking, Web Dev, Embedded Systems, Security..."></textarea>
+            </div>
+
+            <div class="question">
+                <label for="idea1-realistic">Can I realistically finish it? Why or why not?</label>
+                <textarea id="idea1-realistic" placeholder="Consider: timeline, budget, hardware access, learning curve..."></textarea>
+            </div>
+
+            <div class="question">
+                <label>Resume/Portfolio value (1-10):</label>
+                <div class="rating-section">
+                    <input type="text" id="idea1-rating" placeholder="1-10">
+                    <span class="rating-hint">(10 = highly impressive to employers)</span>
+                </div>
+            </div>
+
+            <div class="question">
+                <label for="idea1-mvp">MVP (Must-Have Features):</label>
+                <textarea id="idea1-mvp" placeholder="List the core features needed for graduation..."></textarea>
+            </div>
+
+            <div class="question">
+                <label for="idea1-bonus">Nice-to-Have Features:</label>
+                <textarea id="idea1-bonus" placeholder="List features you'd add if time permits..."></textarea>
+            </div>
+        </div>
+
+        <!-- Idea 2 -->
+        <div class="idea-section">
+            <h2>💡 Idea #2</h2>
+            
+            <div class="question">
+                <label for="idea2-title">Project Title/Concept:</label>
+                <input type="text" id="idea2-title" placeholder="Give your idea a name">
+            </div>
+
+            <div class="question">
+                <label for="idea2-problem">What problem does it solve?</label>
+                <textarea id="idea2-problem" placeholder="Describe the real-world problem this addresses..."></textarea>
+            </div>
+
+            <div class="question">
+                <label for="idea2-skills">What skills/subfields does it showcase?</label>
+                <textarea id="idea2-skills" placeholder="e.g., Networking, Web Dev, Embedded Systems, Security..."></textarea>
+            </div>
+
+            <div class="question">
+                <label for="idea2-realistic">Can I realistically finish it? Why or why not?</label>
+                <textarea id="idea2-realistic" placeholder="Consider: timeline, budget, hardware access, learning curve..."></textarea>
+            </div>
+
+            <div class="question">
+                <label>Resume/Portfolio value (1-10):</label>
+                <div class="rating-section">
+                    <input type="text" id="idea2-rating" placeholder="1-10">
+                    <span class="rating-hint">(10 = highly impressive to employers)</span>
+                </div>
+            </div>
+
+            <div class="question">
+                <label for="idea2-mvp">MVP (Must-Have Features):</label>
+                <textarea id="idea2-mvp" placeholder="List the core features needed for graduation..."></textarea>
+            </div>
+
+            <div class="question">
+                <label for="idea2-bonus">Nice-to-Have Features:</label>
+                <textarea id="idea2-bonus" placeholder="List features you'd add if time permits..."></textarea>
+            </div>
+        </div>
+
+        <!-- Idea 3 -->
+        <div class="idea-section">
+            <h2>💡 Idea #3</h2>
+            
+            <div class="question">
+                <label for="idea3-title">Project Title/Concept:</label>
+                <input type="text" id="idea3-title" placeholder="Give your idea a name">
+            </div>
+
+            <div class="question">
+                <label for="idea3-problem">What problem does it solve?</label>
+                <textarea id="idea3-problem" placeholder="Describe the real-world problem this addresses..."></textarea>
+            </div>
+
+            <div class="question">
+                <label for="idea3-skills">What skills/subfields does it showcase?</label>
+                <textarea id="idea3-skills" placeholder="e.g., Networking, Web Dev, Embedded Systems, Security..."></textarea>
+            </div>
+
+            <div class="question">
+                <label for="idea3-realistic">Can I realistically finish it? Why or why not?</label>
+                <textarea id="idea3-realistic" placeholder="Consider: timeline, budget, hardware access, learning curve..."></textarea>
+            </div>
+
+            <div class="question">
+                <label>Resume/Portfolio value (1-10):</label>
+                <div class="rating-section">
+                    <input type="text" id="idea3-rating" placeholder="1-10">
+                    <span class="rating-hint">(10 = highly impressive to employers)</span>
+                </div>
+            </div>
+
+            <div class="question">
+                <label for="idea3-mvp">MVP (Must-Have Features):</label>
+                <textarea id="idea3-mvp" placeholder="List the core features needed for graduation..."></textarea>
+            </div>
+
+            <div class="question">
+                <label for="idea3-bonus">Nice-to-Have Features:</label>
+                <textarea id="idea3-bonus" placeholder="List features you'd add if time permits..."></textarea>
+            </div>
+        </div>
+
+        <button class="print-button" onclick="window.print()">🖨️ Print Worksheet</button>
+
+        <div class="footer">
+            <p><strong>Next Step:</strong> Discuss your top ideas with your advisor!</p>
+            <p>LIU Engineering Club - Senior Project Success Workshop</p>
+        </div>
+    </div>
+</body>
+</html>

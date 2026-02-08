@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 1: Choosing a Winning Project Topic</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a202c;
+            overflow: hidden;
+        }
+
+        .presentation {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            display: none;
+            background: white;
+            padding: 60px 80px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .slide-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .slide-header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+
+        .slide-header p {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+
+        .slide-content {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .slide-content h2 {
+            color: #2d3748;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-left: 5px solid #667eea;
+            padding-left: 20px;
+        }
+
+        .slide-content h3 {
+            color: #4a5568;
+            font-size: 1.4em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .slide-content p {
+            color: #4a5568;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .slide-content ul, .slide-content ol {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+
+        .slide-content li {
+            color: #4a5568;
+            line-height: 1.8;
+            margin-bottom: 10px;
+            font-size: 1.05em;
+        }
+
+        .highlight-box {
+            background: #edf2f7;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .success-box {
+            background: #f0fff4;
+            border-left: 4px solid #48bb78;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .warning-box {
+            background: #fffaf0;
+            border-left: 4px solid #ed8936;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .danger-box {
+            background: #fff5f5;
+            border-left: 4px solid #f56565;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+
+        button:disabled {
+            background: #cbd5e0;
+            cursor: not-allowed;
+        }
+
+        .slide-number {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #2d3748;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .home-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: #4a5568;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .home-button:hover {
+            background: #2d3748;
+        }
+
+        .image-placeholder {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            color: #718096;
+            margin: 20px 0;
+        }
+
+        .image-placeholder img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .image-placeholder p {
+            margin-top: 10px;
+            font-style: italic;
+            color: #4a5568;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 20px 0;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: start;
+            margin-bottom: 15px;
+        }
+
+        .checklist-item::before {
+            content: "✓";
+            color: #48bb78;
+            font-weight: bold;
+            font-size: 1.5em;
+            margin-right: 15px;
+        }
+
+        .example-box {
+            background: #f7fafc;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="home-button">← Back to Modules</a>
+    
+    <div class="presentation">
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <div class="slide-header">
+                <h1>Module 1</h1>
+                <p>Choosing a Winning Project Topic</p>
+            </div>
+            <div class="slide-content">
+                <div style="text-align: center; margin-top: 80px;">
+                    <h1 style="font-size: 3em; color: #2d3748; margin-bottom: 20px;">🎯 Choosing a Winning Project Topic</h1>
+                    <p style="font-size: 1.5em; color: #718096; margin-bottom: 40px;">The Foundation of Your Success</p>
+                    <p style="color: #4a5568; font-size: 1.2em; margin-top: 30px;">
+                        <strong>Duration:</strong> 25-30 minutes<br>
+                        <strong>LIU Engineering Club</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: The Biggest Mistake -->
+        <div class="slide">
+            <div class="slide-header">
+                <h1>The Biggest Mistake Students Make</h1>
+            </div>
+            <div class="slide-content">
+                <h2>❌ Common Pitfalls</h2>
+                
+                <div class="danger-box">
+                    <h3>🔴 Too Ambitious</h3>
+                    <p><strong>"I'm going to build a full social media platform with AI recommendations, blockchain security, and AR features!"</strong></p>
+                    <p>Reality: You have one semester, limited resources, and other classes to worry about.</p>
+                </div>
+
+                <div class="danger-box">
+                    <h3>🔴 Too Boring</h3>
+                    <p><strong>"I'll make a simple calculator app..."</strong></p>
+                    <p>Reality: Your evaluators have seen this 100 times. It won't showcase your skills or impress anyone.</p>
+                </div>
+
+                <div class="danger-box">
+                    <h3>🔴 No Clear Problem</h3>
+                    <p><strong>"I'll use the latest tech just because it's cool!"</strong></p>
+                    <p>Reality: If it doesn't solve a real problem, what's the point?</p>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>💡 The Sweet Spot:</strong> A project that's challenging enough to impress, realistic enough to finish, and solves an actual problem.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Framework for Topic Selection -->
+        <div class="slide">
+            <div class="slide-header">
+                <h1>The 4-Question Framework</h1>
+            </div>
+            <div class="slide-content">
+                <h2>Ask Yourself These Questions</h2>
+                
+                <div class="example-box">
+                    <h3>1️⃣ Does it solve a REAL problem?</h3>
+                    <div class="checklist-item">Not just "it would be cool" - actual pain point you or others face</div>
+                    <div class="checklist-item">Can you explain WHY this matters in 30 seconds?</div>
+                    <div class="checklist-item">Is there a clear target user/audience?</div>
+                </div>
+
+                <div class="example-box">
+                    <h3>2️⃣ Does it showcase MULTIPLE skills/subfields?</h3>
+                    <div class="checklist-item">Hardware + Software? Backend + Frontend? Networking + Security?</div>
+                    <div class="checklist-item">Shows breadth AND depth of your knowledge</div>
+                    <div class="checklist-item">Makes you more hireable (bonus!)</div>
+                </div>
+
+                <div class="example-box">
+                    <h3>3️⃣ Can you REALISTICALLY finish it?</h3>
+                    <div class="checklist-item">Break it into phases - can you complete MVP in time?</div>
+                    <div class="checklist-item">Do you have access to needed hardware/software?</div>
+                    <div class="checklist-item">Can you afford it? (Budget matters!)</div>
+                </div>
+
+                <div class="example-box">
+                    <h3>4️⃣ Will it look good on your resume/portfolio?</h3>
+                    <div class="checklist-item">Can you demo it to recruiters?</div>
+                    <div class="checklist-item">Does it use industry-relevant tech?</div>
+                    <div class="checklist-item">Could you talk about it for 5 minutes in an interview?</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Case Study - Our Router -->
+        <div class="slide">
+            <div class="slide-header">
+                <h1>Case Study: MY Smart Bridge Router</h1>
+            </div>
+            <div class="slide-content">
+                <h2>How We Chose Our Winning Topic</h2>
+                
+                <div class="success-box">
+                    <h3>The Problem We Identified 🎯</h3>
+                    <p>Public WiFi networks (hotels, cafes, airports) are insecure and expose users to:</p>
+                    <ul>
+                        <li>Data interception and man-in-the-middle attacks</li>
+                        <li>Privacy breaches and tracking</li>
+                        <li>Limited control over content filtering</li>
+                        <li>No bandwidth management</li>
+                    </ul>
+                    <p><strong>The need:</strong> A portable, secure, customizable router you can carry anywhere.</p>
+                </div>
+
+                <div class="example-box">
+                    <h3>Why This Topic Worked ✅</h3>
+                    <div class="two-column">
+                        <div>
+                            <p><strong>✓ Multiple Subfields:</strong></p>
+                            <ul>
+                                <li>Embedded Systems (Raspberry Pi)</li>
+                                <li>Networking (OpenWrt, routing)</li>
+                                <li>Web Development (control interface)</li>
+                                <li>Security (VPN, firewall)</li>
+                                <li>Voice Commands (IoT integration)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p><strong>✓ Realistic Scope:</strong></p>
+                            <ul>
+                                <li>Hardware: ~$50 Raspberry Pi</li>
+                                <li>Software: Open source (free!)</li>
+                                <li>Completable in one semester</li>
+                                <li>Clear milestones</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="image-placeholder">
+                    <img src="images/diagram.png" alt="MY Smart Bridge Router System Architecture">
+                    <p>Figure: MY Smart Bridge Router - System Architecture Overview</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Red Flags to Avoid -->
+        <div class="slide">
+            <div class="slide-header">
+                <h1>🚩 Red Flags to Avoid</h1>
+            </div>
+            <div class="slide-content">
+                <h2>Topics That Become Nightmares</h2>
+                
+                <div class="warning-box">
+                    <h3>⚠️ Dependent on Third-Party APIs That Might Break</h3>
+                    <p>"My entire project relies on this free API..." → API gets discontinued mid-semester.</p>
+                    <p><strong>Better:</strong> Have backup plans or use established, stable APIs.</p>
+                </div>
+
+                <div class="warning-box">
+                    <h3>⚠️ Requires Expensive Hardware You Don't Have</h3>
+                    <p>"I need a $2000 LiDAR sensor..." → Budget says no.</p>
+                    <p><strong>Better:</strong> Work within your budget or secure funding early.</p>
+                </div>
+
+                <div class="warning-box">
+                    <h3>⚠️ No Way to Demo If Internet/Cloud Fails</h3>
+                    <p>"My app needs constant cloud connection..." → WiFi dies during presentation.</p>
+                    <p><strong>Better:</strong> Always have offline demo capability.</p>
+                </div>
+
+                <div class="warning-box">
+                    <h3>⚠️ Requires Expertise in Something Brand New</h3>
+                    <p>"I'll learn quantum computing from scratch and build..." → Not enough time.</p>
+                    <p><strong>Better:</strong> Build on skills you have, learn 1-2 new things max.</p>
+                </div>
+
+                <div class="warning-box">
+                    <h3>⚠️ Legal/Ethical Grey Areas</h3>
+                    <p>"I'll scrape data from..." → Potential legal issues.</p>
+                    <p><strong>Better:</strong> Stay clean and use public datasets or APIs with clear terms.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Where to Find Inspiration -->
+        <div class="slide">
+            <div class="slide-header">
+                <h1>Where to Find Great Ideas</h1>
+            </div>
+            <div class="slide-content">
+                <h2>💡 Inspiration Sources</h2>
+                
+                <div class="example-box">
+                    <h3>1. Your Own Pain Points</h3>
+                    <p>What frustrates you daily? What could be easier?</p>
+                    <p><em>Example: Our router came from dealing with routers that offer no control.</em></p>
+                </div>
+
+                <div class="example-box">
+                    <h3>2. Research Papers & IEEE Publications</h3>
+                    <p>Find cutting-edge ideas, then simplify for your scope.</p>
+                    <p>🔗 <strong>Resources:</strong> IEEE Xplore, Google Scholar, ArXiv</p>
+                </div>
+
+                <div class="example-box">
+                    <h3>3. GitHub Trending & Open Source</h3>
+                    <p>See what developers are building. Can you improve it? Add features?</p>
+                    <p>🔗 <strong>Check:</strong> github.com/trending</p>
+                </div>
+
+                <div class="example-box">
+                    <h3>4. Industry Problems (Internships/Jobs)</h3>
+                    <p>Saw inefficiencies at your internship? Build a solution!</p>
+                </div>
+
+                <div class="example-box">
+                    <h3>5. Combine Existing Technologies in New Ways</h3>
+                    <p>Take proven concepts and merge them creatively.</p>
+                    <p><em>Example: Raspberry Pi (existing) + OpenWrt (existing) + Web Interface (existing) = Our unique router</em></p>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Pro Tip:</strong> Don't reinvent the wheel. Stand on the shoulders of giants and add your unique twist!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: The Brainstorming Process -->
+        <div class="slide">
+            <div class="slide-header">
+                <h1>Brainstorming Your Topic</h1>
+            </div>
+            <div class="slide-content">
+                <h2>Step-by-Step Process</h2>
+                
+                <h3>Step 1: List Your Interests & Skills (5 min)</h3>
+                <p>Write down everything you've learned in your CCE courses:</p>
+                <ul>
+                    <li>Programming languages you know</li>
+                    <li>Hardware platforms (Arduino, Raspberry Pi, etc.)</li>
+                    <li>Favorite courses/topics</li>
+                    <li>Skills you WANT to learn</li>
+                </ul>
+
+                <h3>Step 2: Identify Problems (10 min)</h3>
+                <p>What bugs you? What could be better?</p>
+                <ul>
+                    <li>In your daily life</li>
+                    <li>On campus</li>
+                    <li>In your family/community</li>
+                    <li>In tech you use</li>
+                </ul>
+
+                <h3>Step 3: Match Problems with Skills (10 min)</h3>
+                <p>Which problems can you solve with your skillset?</p>
+
+                <h3>Step 4: Apply the 4-Question Framework (15 min)</h3>
+                <p>Run your top 3-5 ideas through the questions from Slide 3.</p>
+
+                <h3>Step 5: Talk to Your Advisor (Critical!)</h3>
+                <p>Get feedback EARLY. They've seen hundreds of projects - trust their input.</p>
+
+                <div class="success-box">
+                    <p><strong>Deliverable:</strong> By end of this module, you should have 2-3 solid topic ideas to discuss with your advisor!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Scoping Your Project -->
+        <div class="slide">
+            <div class="slide-header">
+                <h1>Scoping: Must-Have vs. Nice-to-Have</h1>
+            </div>
+            <div class="slide-content">
+                <h2>Define Your MVP (Minimum Viable Project)</h2>
+                
+                <div class="example-box">
+                    <h3>Our Router Example:</h3>
+                    <div class="two-column">
+                        <div>
+                            <h4 style="color: #48bb78;">✅ Must-Have (Core Features)</h4>
+                            <ul>
+                                <li>Basic routing functionality</li>
+                                <li>VPN support</li>
+                                <li>Web-based control panel</li>
+                                <li>AdGuard content filtering</li>
+                                <li>Basic firewall rules</li>
+                            </ul>
+                            <p><em>These were non-negotiable for graduation.</em></p>
+                        </div>
+                        <div>
+                            <h4 style="color: #ed8936;">🎁 Nice-to-Have (Bonus)</h4>
+                            <ul>
+                                <li>Voice command integration</li>
+                                <li>Advanced traffic analytics</li>
+                                <li>Mobile app instead of web</li>
+                                <li>Cloud sync features</li>
+                                <li>Multi-language support</li>
+                            </ul>
+                            <p><em>Added if time permits!</em></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>The 80/20 Rule</h3>
+                    <p>Aim to complete 80% of your project in the first 60% of the timeline. This gives you buffer for:</p>
+                    <ul>
+                        <li>Unexpected bugs (there WILL be bugs)</li>
+                        <li>Documentation time</li>
+                        <li>Testing and refinement</li>
+                        <li>Adding those nice-to-have features</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Topic Worksheet -->
+        <div class="slide">
+            <div class="slide-header">
+                <h1>Your Turn: Topic Brainstorming Worksheet</h1>
+            </div>
+            <div class="slide-content">
+                <h2>Fill This Out NOW</h2>
+                
+                <div class="example-box">
+                    <h3>Idea #1: ___________________________</h3>
+                    <p><strong>What problem does it solve?</strong></p>
+                    <p>_____________________________________________</p>
+                    
+                    <p><strong>What skills/subfields does it showcase?</strong></p>
+                    <p>_____________________________________________</p>
+                    
+                    <p><strong>Can I realistically finish it? (Yes/No + Why)</strong></p>
+                    <p>_____________________________________________</p>
+                    
+                    <p><strong>Resume/Portfolio value? (1-10)</strong></p>
+                    <p>_____________________________________________</p>
+                    
+                    <p><strong>MVP (Must-Have Features):</strong></p>
+                    <p>_____________________________________________</p>
+                    
+                    <p><strong>Nice-to-Have Features:</strong></p>
+                    <p>_____________________________________________</p>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>📥 Open the full worksheet:</strong> <a href="documents/worksheet.html" target="_blank" style="color: #667eea; font-weight: 600;">Click here to open the printable worksheet</a></p>
+                    <p>Fill out all 3 ideas, then discuss with your advisor!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Key Takeaways -->
+        <div class="slide">
+            <div class="slide-header">
+                <h1>Key Takeaways</h1>
+            </div>
+            <div class="slide-content">
+                <h2>Remember These 🎯</h2>
+                
+                <div class="success-box">
+                    <h3>✅ Choose a project that:</h3>
+                    <div class="checklist-item">Solves a REAL problem (not just "cool tech")</div>
+                    <div class="checklist-item">Showcases MULTIPLE skills from your degree</div>
+                    <div class="checklist-item">Is REALISTIC to finish in one semester</div>
+                    <div class="checklist-item">Will look GREAT on your resume</div>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>💡 Pro Tips:</h3>
+                    <ul>
+                        <li>Start with problems YOU face - you'll be more motivated</li>
+                        <li>Define MVP early - know what's essential vs. bonus</li>
+                        <li>Get advisor feedback BEFORE you commit</li>
+                        <li>Build on existing tech, don't reinvent everything</li>
+                        <li>Always have a backup demo plan</li>
+                    </ul>
+                </div>
+
+                <div class="warning-box">
+                    <h3>🚩 Avoid projects that:</h3>
+                    <ul>
+                        <li>Require expensive hardware you can't afford</li>
+                        <li>Depend on unstable third-party services</li>
+                        <li>Need you to learn too many new things at once</li>
+                        <li>Have unclear legal/ethical implications</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Next Steps -->
+        <div class="slide">
+            <div class="slide-header">
+                <h1>What's Next?</h1>
+            </div>
+            <div class="slide-content">
+                <h2>Action Items 📋</h2>
+                
+                <div class="example-box">
+                    <h3>Before Module 2:</h3>
+                    <div class="checklist-item">Complete the topic brainstorming worksheet (Ideas #1, #2, #3)</div>
+                    <div class="checklist-item">Schedule a meeting with your advisor to discuss your top ideas</div>
+                    <div class="checklist-item">Do preliminary research on feasibility (check available libraries, hardware costs, etc.)</div>
+                    <div class="checklist-item">Start thinking about who your project partner might be (if required)</div>
+                </div>
+
+                <div class="success-box">
+                    <h3>🎉 Coming Up in Module 2:</h3>
+                    <p><strong>"Project Planning & Execution"</strong></p>
+                    <ul>
+                        <li>How to break down your complex project into phases</li>
+                        <li>Creating realistic timelines and milestones</li>
+                        <li>Version control essentials (Git is your best friend!)</li>
+                        <li>When to pivot vs. when to push through challenges</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box" style="text-align: center; margin-top: 40px;">
+                    <h2>Questions?</h2>
+                    <p>Reach out to Yousef Younis</p>
+                    <p><strong>Email:</strong> <a href="mailto:yousef.r.younis@gmail.com" style="color: #667eea;">yousef.r.younis@gmail.com</a></p>
+                    <p><strong>WhatsApp:</strong> <a href="https://wa.me/96170865988" style="color: #25D366;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#25D366" viewBox="0 0 16 16" style="vertical-align: middle; margin-right: 5px;"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>+961 70 865 988</a></p>
+                    <p><strong>GitHub:</strong> <a href="https://github.com/yousef-r-younis/MY-Smart-Bridge-Router" style="color: #667eea;">github.com/yousef-r-younis/MY-Smart-Bridge-Router</a></p>
+                    <p style="margin-top: 15px;"><a href="https://instagram.com/liuengineeringclub" target="_blank" style="display: inline-block; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 16 16" style="vertical-align: middle; margin-right: 8px;"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/></svg>Follow @liuengineeringclub</a></p>
+                    <p style="margin-top: 20px;"><a href="module2.html" style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1.1em;">Continue to Module 2 →</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-number">
+        <span id="current-slide">1</span> / <span id="total-slides">11</span>
+    </div>
+
+    <div class="controls">
+        <button id="prev-btn" onclick="prevSlide()">← Previous</button>
+        <button id="next-btn" onclick="nextSlide()">Next →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        document.getElementById('total-slides').textContent = totalSlides;
+        
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+            
+            document.getElementById('prev-btn').disabled = currentSlide === 0;
+            document.getElementById('next-btn').disabled = currentSlide === totalSlides - 1;
+        }
+        
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+        
+        function prevSlide() {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+    </script>
+</body>
+</html>

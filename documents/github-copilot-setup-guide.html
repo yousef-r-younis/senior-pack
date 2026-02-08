@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Copilot Setup Guide - Senior Project Workshop</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f7fafc;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .section {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .section h2 {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+        }
+
+        .section h3 {
+            color: #4a5568;
+            font-size: 1.25em;
+            margin-top: 25px;
+            margin-bottom: 12px;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            color: #4a5568;
+        }
+
+        .section ul, .section ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        .section li {
+            color: #4a5568;
+            margin-bottom: 8px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .step-card {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            transition: border-color 0.3s;
+        }
+
+        .step-card:hover {
+            border-color: #667eea;
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1em;
+            margin-bottom: 12px;
+        }
+
+        .step-card h3 {
+            color: #2d3748;
+            margin-bottom: 10px;
+            margin-top: 0;
+            font-size: 1.15em;
+        }
+
+        .step-card p {
+            color: #4a5568;
+            margin-bottom: 10px;
+        }
+
+        .step-card ul {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        .step-card li {
+            color: #4a5568;
+            margin-bottom: 8px;
+        }
+
+        .code-block {
+            background: #2d3748;
+            color: #48bb78;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-size: 0.95em;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            position: relative;
+        }
+
+        .copy-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85em;
+            margin-top: 8px;
+            transition: background 0.3s;
+        }
+
+        .copy-btn:hover {
+            background: #5a67d8;
+        }
+
+        .copy-btn.copied {
+            background: #48bb78;
+        }
+
+        .code-block .copy-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: #4a5568;
+            margin-top: 0;
+        }
+
+        .code-block .copy-btn:hover {
+            background: #667eea;
+        }
+
+        .tip-box {
+            background: #edf2f7;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .tip-box h3 {
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+
+        .tip-box ul {
+            margin-left: 25px;
+        }
+
+        .tip-box li {
+            margin-bottom: 6px;
+            color: #2d3748;
+        }
+
+        .info-box {
+            background: #ebf8ff;
+            border-left: 4px solid #4299e1;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+
+        .success-box {
+            background: #f0fff4;
+            border-left: 4px solid #48bb78;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+
+        .warning-box {
+            background: #fffaf0;
+            border-left: 4px solid #ed8936;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 15px 0;
+        }
+
+        .feature-card {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            transition: border-color 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: #667eea;
+        }
+
+        .feature-card h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .feature-card ul {
+            margin-left: 20px;
+        }
+
+        .feature-card li {
+            color: #4a5568;
+            margin-bottom: 6px;
+            font-size: 0.95em;
+        }
+
+        .shortcut-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        .shortcut-table th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        .shortcut-table td {
+            padding: 10px 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .shortcut-table tr:nth-child(even) {
+            background: #f7fafc;
+        }
+
+        .shortcut-table code {
+            background: #edf2f7;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .toc {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px 25px;
+            margin-bottom: 10px;
+            transition: border-color 0.3s;
+        }
+
+        .toc:hover {
+            border-color: #667eea;
+        }
+
+        .toc h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .toc ol {
+            margin-left: 25px;
+        }
+
+        .toc li {
+            margin-bottom: 8px;
+        }
+
+        .toc a {
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .toc a:hover {
+            color: #667eea;
+            text-decoration: underline;
+        }
+
+        .checklist {
+            list-style: none;
+            margin: 15px 0;
+            padding: 0;
+        }
+
+        .checklist li {
+            padding: 8px 0 8px 35px;
+            position: relative;
+            color: #4a5568;
+        }
+
+        .checklist li::before {
+            content: "☐";
+            position: absolute;
+            left: 5px;
+            font-size: 1.2em;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.95em;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        @media print {
+            body { background: white; }
+            .button-group, .copy-btn { display: none; }
+            .section {
+                box-shadow: none;
+                border: 1px solid #e2e8f0;
+                page-break-inside: avoid;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8em; }
+            .container { padding: 20px 15px; }
+            .two-column { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../module3.html" class="back-link">← Back to Module 3</a>
+
+        <div class="header">
+            <h1>💻 GitHub Copilot Setup Guide</h1>
+            <p>Get free AI-powered code completion for your senior project</p>
+        </div>
+
+        <!-- Table of Contents -->
+        <div class="section">
+            <div class="toc">
+                <h2>📋 Table of Contents</h2>
+                <ol>
+                    <li><a href="#what-is-copilot">What is GitHub Copilot?</a></li>
+                    <li><a href="#student-pack">Get the GitHub Student Developer Pack (Free!)</a></li>
+                    <li><a href="#setup-vscode">Set Up Copilot in VS Code</a></li>
+                    <li><a href="#setup-jetbrains">Set Up Copilot in JetBrains IDEs</a></li>
+                    <li><a href="#first-use">Your First Time Using Copilot</a></li>
+                    <li><a href="#keyboard-shortcuts">Keyboard Shortcuts Reference</a></li>
+                    <li><a href="#copilot-chat">Using Copilot Chat</a></li>
+                    <li><a href="#best-practices">Best Practices for Senior Projects</a></li>
+                    <li><a href="#troubleshooting">Troubleshooting Common Issues</a></li>
+                    <li><a href="#checklist">Setup Checklist</a></li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Section 1: What is Copilot -->
+        <div class="section" id="what-is-copilot">
+            <h2>1. What is GitHub Copilot?</h2>
+            <p>GitHub Copilot is an AI pair programmer that sits inside your code editor. It suggests code as you type — from single lines to entire functions — based on context from your code and comments.</p>
+
+            <div class="two-column">
+                <div class="feature-card">
+                    <h4>🚀 What It Can Do</h4>
+                    <ul>
+                        <li>Autocomplete code as you type</li>
+                        <li>Generate functions from comments</li>
+                        <li>Suggest multiple code alternatives</li>
+                        <li>Write boilerplate & repetitive code</li>
+                        <li>Help with unfamiliar languages/APIs</li>
+                        <li>Generate unit tests</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h4>🎓 Why It's Great for Senior Projects</h4>
+                    <ul>
+                        <li>Saves hours on boilerplate code</li>
+                        <li>Helps learn new frameworks faster</li>
+                        <li>Reduces syntax errors</li>
+                        <li>Speeds up prototyping</li>
+                        <li>Works with any programming language</li>
+                        <li><strong>FREE for students!</strong></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <p><strong>💡 Languages Supported:</strong> Python, JavaScript, TypeScript, C, C++, C#, Java, Go, Ruby, PHP, Shell scripting, HTML/CSS, SQL, and many more. It works best with popular languages that have lots of training data.</p>
+            </div>
+        </div>
+
+        <!-- Section 2: Student Developer Pack -->
+        <div class="section" id="student-pack">
+            <h2>2. Get the GitHub Student Developer Pack</h2>
+            <p>As a student, you get GitHub Copilot <strong>completely free</strong> through the GitHub Student Developer Pack. Here's how to get it:</p>
+
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>Create a GitHub Account (if you don't have one)</h3>
+                <p>Go to <strong><a href="https://github.com/join" target="_blank" style="color: #667eea;">github.com/join</a></strong> and sign up.</p>
+                <div class="tip-box">
+                    <p><strong>💡 Tip:</strong> Use your personal email (not university email) as primary — you'll keep this account after graduation. You can add your university email as a secondary email.</p>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>Add Your University Email</h3>
+                <ul>
+                    <li>Go to <strong>Settings → Emails</strong></li>
+                    <li>Click "Add email address"</li>
+                    <li>Add your <strong>@students.liu.edu.lb</strong> email</li>
+                    <li>Verify it by clicking the link sent to your university email</li>
+                </ul>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>Apply for the Student Developer Pack</h3>
+                <ul>
+                    <li>Visit <strong><a href="https://education.github.com/pack" target="_blank" style="color: #667eea;">education.github.com/pack</a></strong></li>
+                    <li>Click <strong>"Sign up for Student Developer Pack"</strong></li>
+                    <li>Select your university email as verification</li>
+                    <li>Upload proof of enrollment (student ID or enrollment letter)</li>
+                    <li>Submit the application</li>
+                </ul>
+                <div class="warning-box">
+                    <p><strong>⚠️ Approval Time:</strong> Usually takes a few minutes to a few days. If rejected, try again with a clearer photo of your student ID.</p>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <h3>Activate GitHub Copilot</h3>
+                <ul>
+                    <li>Once approved, go to <strong><a href="https://github.com/settings/copilot" target="_blank" style="color: #667eea;">github.com/settings/copilot</a></strong></li>
+                    <li>You should see the option to enable Copilot for free</li>
+                    <li>Click <strong>"Enable GitHub Copilot"</strong></li>
+                    <li>Choose your preferences (suggestions, telemetry)</li>
+                </ul>
+                <div class="success-box">
+                    <p><strong>✅ Done!</strong> Copilot is now active on your GitHub account. Now let's set it up in your editor.</p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <p><strong>📦 Bonus:</strong> The Student Developer Pack also includes free domains, cloud credits, CI/CD tools, and more. Check out all the benefits at <a href="https://education.github.com/pack" target="_blank" style="color: #4299e1;">education.github.com/pack</a>.</p>
+            </div>
+        </div>
+
+        <!-- Section 3: VS Code Setup -->
+        <div class="section" id="setup-vscode">
+            <h2>3. Set Up Copilot in VS Code</h2>
+            <p>VS Code is the recommended editor for most senior projects. Here's how to install Copilot:</p>
+
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>Install VS Code</h3>
+                <p>Download from <strong><a href="https://code.visualstudio.com/" target="_blank" style="color: #667eea;">code.visualstudio.com</a></strong> if you haven't already.</p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>Install the GitHub Copilot Extension</h3>
+                <ul>
+                    <li>Open VS Code</li>
+                    <li>Press <code>Ctrl+Shift+X</code> to open Extensions</li>
+                    <li>Search for <strong>"GitHub Copilot"</strong></li>
+                    <li>Click <strong>Install</strong> on the one by GitHub (verified publisher)</li>
+                    <li>Also install <strong>"GitHub Copilot Chat"</strong> for the chat interface</li>
+                </ul>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>Sign In to GitHub</h3>
+                <ul>
+                    <li>After installing, you'll see a prompt to sign in</li>
+                    <li>Click <strong>"Sign in to GitHub"</strong></li>
+                    <li>A browser window opens — log in with your GitHub account</li>
+                    <li>Authorize VS Code to access your account</li>
+                    <li>Return to VS Code — you should see the Copilot icon in the status bar</li>
+                </ul>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <h3>Verify It's Working</h3>
+                <p>Create a new file (e.g., <code>test.py</code>) and type:</p>
+                <div class="code-block"># Function to calculate the factorial of a number<button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+                <p>Press <strong>Enter</strong> and wait a moment. Copilot should suggest the complete function in gray text. Press <strong>Tab</strong> to accept.</p>
+                <div class="success-box">
+                    <p><strong>✅ If you see gray suggestion text:</strong> Copilot is working!</p>
+                </div>
+                <div class="warning-box">
+                    <p><strong>⚠️ If nothing appears:</strong> Check the Copilot icon in the bottom-right status bar. It should show as active (not crossed out).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: JetBrains Setup -->
+        <div class="section" id="setup-jetbrains">
+            <h2>4. Set Up Copilot in JetBrains IDEs</h2>
+            <p>If you use IntelliJ IDEA, PyCharm, WebStorm, or other JetBrains IDEs:</p>
+
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>Install the Plugin</h3>
+                <ul>
+                    <li>Open your JetBrains IDE</li>
+                    <li>Go to <strong>Settings → Plugins → Marketplace</strong></li>
+                    <li>Search for <strong>"GitHub Copilot"</strong></li>
+                    <li>Click <strong>Install</strong> and restart the IDE</li>
+                </ul>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>Sign In</h3>
+                <ul>
+                    <li>After restart, go to <strong>Tools → GitHub Copilot → Login to GitHub</strong></li>
+                    <li>Copy the device code shown</li>
+                    <li>Open the browser link and paste the code</li>
+                    <li>Authorize the application</li>
+                </ul>
+            </div>
+
+            <div class="tip-box">
+                <p><strong>💡 Note:</strong> JetBrains IDEs are also free for students! Apply at <a href="https://www.jetbrains.com/student/" target="_blank" style="color: #667eea;">jetbrains.com/student</a> with your university email.</p>
+            </div>
+        </div>
+
+        <!-- Section 5: First Use -->
+        <div class="section" id="first-use">
+            <h2>5. Your First Time Using Copilot</h2>
+            <p>Here's how Copilot works in practice:</p>
+
+            <h3>📝 Inline Suggestions (Ghost Text)</h3>
+            <p>As you type, Copilot shows suggestions in gray "ghost text":</p>
+            <div class="code-block"># Type this comment:
+# Function to read a CSV file and return a list of dictionaries
+
+# Copilot suggests the complete function below:
+def read_csv(filepath):
+    import csv
+    with open(filepath, 'r') as file:
+        reader = csv.DictReader(file)
+        return list(reader)<button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+            <h3>💬 Comment-Driven Development</h3>
+            <p>Write descriptive comments and Copilot generates the code:</p>
+            <div class="code-block">// JavaScript example:
+// Fetch all connected devices from the router API,
+// filter out inactive ones, and sort by connection time
+
+async function getActiveDevices() {
+    const response = await fetch('/api/devices');
+    const devices = await response.json();
+    return devices
+        .filter(device => device.status === 'active')
+        .sort((a, b) => new Date(b.connected_at) - new Date(a.connected_at));
+}<button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+            <h3>🔄 Multiple Suggestions</h3>
+            <p>Copilot can offer different alternatives for the same code:</p>
+            <div class="info-box">
+                <ul>
+                    <li><strong>Tab</strong> — Accept the current suggestion</li>
+                    <li><strong>Esc</strong> — Dismiss the suggestion</li>
+                    <li><strong>Alt+]</strong> — See next alternative suggestion</li>
+                    <li><strong>Alt+[</strong> — See previous alternative suggestion</li>
+                    <li><strong>Ctrl+Enter</strong> — Open Copilot completions panel (see up to 10 suggestions)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 6: Keyboard Shortcuts -->
+        <div class="section" id="keyboard-shortcuts">
+            <h2>6. Keyboard Shortcuts Reference</h2>
+
+            <table class="shortcut-table">
+                <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>Windows/Linux</th>
+                        <th>macOS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Accept suggestion</td>
+                        <td><code>Tab</code></td>
+                        <td><code>Tab</code></td>
+                    </tr>
+                    <tr>
+                        <td>Dismiss suggestion</td>
+                        <td><code>Esc</code></td>
+                        <td><code>Esc</code></td>
+                    </tr>
+                    <tr>
+                        <td>Next suggestion</td>
+                        <td><code>Alt + ]</code></td>
+                        <td><code>Option + ]</code></td>
+                    </tr>
+                    <tr>
+                        <td>Previous suggestion</td>
+                        <td><code>Alt + [</code></td>
+                        <td><code>Option + [</code></td>
+                    </tr>
+                    <tr>
+                        <td>Open completions panel</td>
+                        <td><code>Ctrl + Enter</code></td>
+                        <td><code>Ctrl + Enter</code></td>
+                    </tr>
+                    <tr>
+                        <td>Accept word (partial)</td>
+                        <td><code>Ctrl + →</code></td>
+                        <td><code>Cmd + →</code></td>
+                    </tr>
+                    <tr>
+                        <td>Open Copilot Chat</td>
+                        <td><code>Ctrl + Shift + I</code></td>
+                        <td><code>Cmd + Shift + I</code></td>
+                    </tr>
+                    <tr>
+                        <td>Inline Chat</td>
+                        <td><code>Ctrl + I</code></td>
+                        <td><code>Cmd + I</code></td>
+                    </tr>
+                    <tr>
+                        <td>Toggle Copilot on/off</td>
+                        <td colspan="2">Click the Copilot icon in the status bar</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Section 7: Copilot Chat -->
+        <div class="section" id="copilot-chat">
+            <h2>7. Using Copilot Chat</h2>
+            <p>Copilot Chat is a built-in AI assistant inside VS Code. Think of it as having Claude or ChatGPT right in your editor.</p>
+
+            <h3>How to Open Copilot Chat</h3>
+            <ul>
+                <li><strong>Chat Panel:</strong> Press <code>Ctrl+Shift+I</code> (opens sidebar chat)</li>
+                <li><strong>Inline Chat:</strong> Press <code>Ctrl+I</code> (opens chat right in your code)</li>
+                <li><strong>Quick Chat:</strong> Press <code>Ctrl+Shift+Alt+L</code></li>
+            </ul>
+
+            <h3>Useful Chat Commands</h3>
+            <div class="code-block">/explain     → Explain selected code
+/fix         → Fix problems in selected code
+/tests       → Generate unit tests for selected code
+/doc         → Generate documentation/comments
+@workspace   → Ask about your entire project
+#file        → Reference a specific file in your question<button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+            <h3>Example Chat Prompts for Senior Projects</h3>
+
+            <div class="tip-box">
+                <p><strong>Debugging:</strong> "Why is this function returning null? I expect it to return a list of devices."</p>
+            </div>
+
+            <div class="tip-box">
+                <p><strong>Explaining code:</strong> Select a block of code → <code>Ctrl+I</code> → "Explain what this does step by step"</p>
+            </div>
+
+            <div class="tip-box">
+                <p><strong>Refactoring:</strong> Select code → <code>Ctrl+I</code> → "Refactor this to use async/await instead of callbacks"</p>
+            </div>
+
+            <div class="tip-box">
+                <p><strong>Testing:</strong> Select a function → <code>Ctrl+I</code> → "/tests"</p>
+            </div>
+        </div>
+
+        <!-- Section 8: Best Practices -->
+        <div class="section" id="best-practices">
+            <h2>8. Best Practices for Senior Projects</h2>
+
+            <div class="success-box">
+                <h3>✅ DO These Things</h3>
+                <ul>
+                    <li><strong>Write clear comments first</strong> — Copilot generates better code from good comments</li>
+                    <li><strong>Review every suggestion</strong> — Don't Tab-accept blindly</li>
+                    <li><strong>Use descriptive variable names</strong> — Helps Copilot understand context</li>
+                    <li><strong>Break problems into small functions</strong> — Copilot handles small, focused functions best</li>
+                    <li><strong>Use Copilot Chat to understand generated code</strong> — Select it and ask "/explain"</li>
+                    <li><strong>Check for security issues</strong> — AI-generated code isn't always secure</li>
+                    <li><strong>Test all generated code</strong> — It might look right but have subtle bugs</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <h3>⚠️ DON'T Do These Things</h3>
+                <ul>
+                    <li><strong>Don't accept suggestions without reading them</strong></li>
+                    <li><strong>Don't paste sensitive data</strong> (passwords, API keys) where Copilot can see them</li>
+                    <li><strong>Don't rely on Copilot for complex algorithms</strong> without verification</li>
+                    <li><strong>Don't let it write your entire project</strong> — you need to understand every line</li>
+                    <li><strong>Don't skip testing</strong> because "the AI wrote it"</li>
+                </ul>
+            </div>
+
+            <div class="tip-box">
+                <h3>💡 Pro Tips from Our Project</h3>
+                <ul>
+                    <li><strong>Name your files well:</strong> <code>device_monitor.py</code> gives Copilot better context than <code>script1.py</code></li>
+                    <li><strong>Keep related files open:</strong> Copilot uses open tabs as context</li>
+                    <li><strong>Write function signatures first:</strong> Let Copilot fill in the body</li>
+                    <li><strong>Use it for boilerplate:</strong> Config files, API endpoints, HTML templates — perfect for Copilot</li>
+                    <li><strong>Pair with Copilot Chat:</strong> When inline suggestions aren't enough, chat for complex problems</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 9: Troubleshooting -->
+        <div class="section" id="troubleshooting">
+            <h2>9. Troubleshooting Common Issues</h2>
+
+            <div class="step-card">
+                <h3>❌ "Copilot is not active" / No suggestions appearing</h3>
+                <ul>
+                    <li>Check the Copilot icon in the VS Code status bar (bottom right)</li>
+                    <li>If it's crossed out, click it and enable it</li>
+                    <li>Make sure you're signed into GitHub in VS Code</li>
+                    <li>Try: <strong>Ctrl+Shift+P → "GitHub Copilot: Sign In"</strong></li>
+                    <li>Restart VS Code</li>
+                </ul>
+            </div>
+
+            <div class="step-card">
+                <h3>❌ "Your GitHub account doesn't have Copilot access"</h3>
+                <ul>
+                    <li>Verify your Student Developer Pack is approved at <a href="https://education.github.com/pack" target="_blank" style="color: #667eea;">education.github.com/pack</a></li>
+                    <li>Go to <a href="https://github.com/settings/copilot" target="_blank" style="color: #667eea;">github.com/settings/copilot</a> and enable it</li>
+                    <li>If your pack isn't approved yet, wait for the email confirmation</li>
+                </ul>
+            </div>
+
+            <div class="step-card">
+                <h3>❌ Suggestions are irrelevant / low quality</h3>
+                <ul>
+                    <li>Add more context: better comments, clearer variable names</li>
+                    <li>Open related files in VS Code tabs (Copilot uses them as context)</li>
+                    <li>Try pressing <code>Alt+]</code> to cycle through alternative suggestions</li>
+                    <li>Use Copilot Chat instead for complex requests</li>
+                </ul>
+            </div>
+
+            <div class="step-card">
+                <h3>❌ Copilot is slow / laggy</h3>
+                <ul>
+                    <li>Check your internet connection (Copilot needs internet)</li>
+                    <li>Close unnecessary VS Code extensions</li>
+                    <li>Check GitHub's status page: <a href="https://www.githubstatus.com/" target="_blank" style="color: #667eea;">githubstatus.com</a></li>
+                    <li>Restart VS Code</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 10: Checklist -->
+        <div class="section" id="checklist">
+            <h2>10. Setup Checklist</h2>
+            <p>Use this checklist to make sure everything is set up correctly:</p>
+
+            <div class="step-card">
+                <h3>📋 Complete Setup Checklist</h3>
+                <ul class="checklist">
+                    <li>Created a GitHub account</li>
+                    <li>Added university email to GitHub account</li>
+                    <li>Applied for GitHub Student Developer Pack</li>
+                    <li>Student Developer Pack approved</li>
+                    <li>Enabled GitHub Copilot in account settings</li>
+                    <li>Installed VS Code (or your preferred IDE)</li>
+                    <li>Installed GitHub Copilot extension</li>
+                    <li>Installed GitHub Copilot Chat extension</li>
+                    <li>Signed into GitHub in VS Code</li>
+                    <li>Tested Copilot with a simple comment → code generation</li>
+                    <li>Tried Copilot Chat with /explain command</li>
+                    <li>Learned keyboard shortcuts (Tab, Esc, Alt+], Ctrl+I)</li>
+                </ul>
+            </div>
+
+            <div class="success-box">
+                <h3>🎉 You're All Set!</h3>
+                <p>You now have a free, powerful AI coding assistant that will help you throughout your senior project. Remember: Copilot is a tool to make you more productive, not a replacement for understanding your code.</p>
+                <p style="margin-top: 10px;"><strong>Happy coding! 🚀</strong></p>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="button-group">
+            <button class="btn btn-primary" onclick="window.print()">🖨️ Print This Document</button>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; color: #718096; padding-top: 20px; border-top: 1px solid #e2e8f0;">
+            <p>Created by LIU Engineering Club</p>
+            <p><a href="mailto:yousef.r.younis@gmail.com" style="color: #667eea;">yousef.r.younis@gmail.com</a></p>
+        </div>
+    </div>
+
+    <script>
+        function copyCode(btn) {
+            const codeBlock = btn.parentElement;
+            const text = codeBlock.textContent.replace('Copy', '').trim();
+            navigator.clipboard.writeText(text).then(() => {
+                btn.textContent = '✓ Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = 'Copy';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

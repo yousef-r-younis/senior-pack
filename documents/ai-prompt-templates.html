@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Prompt Templates for Senior Projects</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f7fafc;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .section {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .section h2 {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+        }
+
+        .template-card {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: border-color 0.3s;
+        }
+
+        .template-card:hover {
+            border-color: #667eea;
+        }
+
+        .template-card h3 {
+            color: #2d3748;
+            margin-bottom: 8px;
+            font-size: 1.15em;
+        }
+
+        .template-card .use-case {
+            color: #667eea;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .prompt-area {
+            width: 100%;
+            min-height: 80px;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            line-height: 1.5;
+            resize: vertical;
+            background: #edf2f7;
+            color: #2d3748;
+        }
+
+        .prompt-area:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+            background: white;
+        }
+
+        .example-text {
+            color: #718096;
+            font-size: 0.9em;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        .copy-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85em;
+            margin-top: 8px;
+            transition: background 0.3s;
+        }
+
+        .copy-btn:hover {
+            background: #5a67d8;
+        }
+
+        .copy-btn.copied {
+            background: #48bb78;
+        }
+
+        .tip-box {
+            background: #edf2f7;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .tip-box h3 {
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+
+        .tip-box ul {
+            margin-left: 25px;
+        }
+
+        .tip-box li {
+            margin-bottom: 6px;
+            color: #2d3748;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.95em;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #2d3748;
+        }
+
+        .btn-secondary:hover {
+            background: #cbd5e0;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: 600;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        .badge-code { background: #ebf4ff; color: #3182ce; }
+        .badge-report { background: #fefcbf; color: #975a16; }
+        .badge-debug { background: #fed7d7; color: #c53030; }
+        .badge-research { background: #c6f6d5; color: #276749; }
+        .badge-design { background: #e9d8fd; color: #6b46c1; }
+
+        @media print {
+            body { background: white; }
+            .button-group, .copy-btn { display: none; }
+            .section {
+                box-shadow: none;
+                border: 1px solid #e2e8f0;
+                page-break-inside: avoid;
+            }
+            .prompt-area {
+                border: 1px solid #cbd5e0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">← Back to Modules</a>
+
+        <div class="header">
+            <h1>🤖 AI Prompt Templates</h1>
+            <p>20+ Ready-to-Use Templates for Senior Projects</p>
+            <p style="margin-top: 10px; opacity: 0.8;">Edit the prompts below to fit your project, then copy & paste into your AI tool</p>
+        </div>
+
+        <div class="tip-box" style="background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-radius: 8px; padding: 20px;">
+            <h3>💡 How to Use This Document</h3>
+            <ul>
+                <li><strong>Click any prompt</strong> to edit it and customize for your project</li>
+                <li><strong>Replace [brackets]</strong> with your actual project details</li>
+                <li><strong>Click "Copy"</strong> to copy the prompt to your clipboard</li>
+                <li><strong>Paste</strong> into ChatGPT, Claude, or any AI tool</li>
+            </ul>
+        </div>
+
+        <!-- Section 1: Understanding Concepts -->
+        <div class="section">
+            <h2>1. Understanding Concepts <span class="badge badge-research">Research</span></h2>
+
+            <div class="template-card">
+                <h3>#1 — Explain a Technical Concept</h3>
+                <div class="use-case">Use when: You encounter a new technology or concept</div>
+                <textarea class="prompt-area" rows="3">I'm working on [your project topic]. Can you explain [concept] in the context of [specific technology]? Use analogies if helpful, and provide a simple example.</textarea>
+                <p class="example-text">Example: "I'm working on a smart router. Can you explain Quality of Service (QoS) in the context of home networking?"</p>
+                <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy</button>
+            </div>
+
+            <div class="template-card">
+                <h3>#2 — Compare Technologies</h3>
+                <div class="use-case">Use when: Choosing between tools, frameworks, or approaches</div>
+                <textarea class="prompt-area" rows="3">I'm deciding between [Technology A] and [Technology B] for [specific use case]. Can you compare them based on [criteria: performance, ease of use, community support, documentation]? I need this for my literature review section.</textarea>
+                <p class="example-text">Example: "I'm deciding between WireGuard and OpenVPN for my router VPN. Compare based on speed and configuration ease."</p>
+                <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy</button>
+            </div>
+
+            <div class="template-card">
+                <h3>#3 — Understand an Architecture Pattern</h3>
+                <div class="use-case">Use when: Planning your system design</div>
+                <textarea class="prompt-area" rows="3">Can you explain the [architecture pattern, e.g., client-server, microservices, layered] architecture? How would it apply to a project that [describe your project goal]? Include pros, cons, and a simple diagram description.</textarea>
+                <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy</button>
+            </div>
+
+            <div class="template-card">
+                <h3>#4 — Summarize a Research Paper</h3>
+                <div class="use-case">Use when: Building your literature review</div>
+                <textarea class="prompt-area" rows="3">Can you summarize this research paper in 3 paragraphs? Focus on: (1) the problem they solved, (2) their approach/methodology, and (3) their key findings. Here's the abstract: [paste abstract or key sections]</textarea>
+                <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy</button>
+            </div>
+        </div>
+
+        <!-- Section 2: Coding & Development -->
+        <div class="section">
+            <h2>2. Coding & Development <span class="badge badge-code">Code</span></h2>
+
+            <div class="template-card">
+                <h3>#5 — Generate Boilerplate Code</h3>
+                <div class="use-case">Use when: Starting a new feature or component</div>
+                <textarea class="prompt-area" rows="3">I need a basic [type: REST API endpoint / function / class / script] in [language] that does the following: [describe functionality]. Include error handling and comments explaining each section.</textarea>
+                <p class="example-text">Example: "I need a basic REST API endpoint in Python Flask that returns a list of connected devices as JSON."</p>
+                <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy</button>
+            </div>
+
+            <div class="template-card">
+                <h3>#6 — Generate a Function from Description</h3>
+                <div class="use-case">Use when: You know WHAT you need but want help with HOW</div>
+                <textarea class="prompt-area" rows="3">Write a [language] function that: 
+- Input: [describe input parameters and types]
+- Output: [describe expected output]
+- Behavior: [describe what the function should do step by step]
+Include error handling for edge cases.</textarea>
+                <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy</button>
+            </div>
+
+            <div class="template-card">
+                <h3>#7 — Write a Shell/Config Script</h3>
+                <div class="use-case">Use when: Setting up environments, automation</div>
+                <textarea class="prompt-area" rows="3">I need a [bash/PowerShell/batch] script that: [describe what the script should do]. It should run on [OS/environment]. Include comments, error checking, and make it idempotent (safe to run multiple times).</textarea>
+                <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy</button>
+            </div>
+
+            <div class="template-card">
+                <h3>#8 — Convert Code Between Languages</h3>
+                <div class="use-case">Use when: Porting functionality or learning a new language</div>
+                <textarea class="prompt-area" rows="3">Convert this [source language] code to [target language]. Maintain the same functionality and use idiomatic patterns for the target language. Here's the code:
+
+[paste code]</textarea>
+                <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy</button>
+            </div>
+        </div>
+
+        <!-- Section 3: Debugging -->
+        <div class="section">
+            <h2>3. Debugging <span class="badge badge-debug">Debug</span></h2>
+
+            <div class="template-card">
+                <h3>#9 — Debug an Error</h3>
+                <div class="use-case">Use when: You have a specific error message</div>
+                <textarea class="prompt-area" rows="4">I'm implementing [feature] using [technology/language]. I'm getting this error:
+
+[paste error message]
+
+Here's the relevant code:
+
+[paste code]
+
+What's causing this error and how can I fix it?</textarea>
+                <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy</button>
+            </div>
+
+            <div class="template-card">
+                <h3>#10 — Debug Unexpected Behavior</h3>
+                <div class="use-case">Use when: Code runs but gives wrong results</div>
+                <textarea class="prompt-area" rows="4">This [language] function is supposed to [expected behavior] but instead it [actual behavior]. Can you walk me through what each line does and identify where the logic breaks down?
+
+[paste code]</textarea>
+                <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy</button>
+            </div>
+
+            <div class="template-card">
+                <h3>#11 — Debug Configuration Files</h3>
+                <div class="use-case">Use when: System/network configs aren't working</div>
+                <textarea class="prompt-area" rows="4">I'm configuring [system/tool, e.g., OpenWrt, Nginx, Docker] and [describe what's not working]. Here's my configuration file:
+
+[paste config]
+
+What's wrong and what should I change?</textarea>
+                <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy</button>
+            </div>
+        </div>
+
+        <!-- Section 4: Code Review -->
+        <div class="section">
+            <h2>4. Code Review <span class="badge badge-code">Code</span></h2>
+
+            <div class="template-card">
+                <h3>#12 — General Code Review</h3>
+                <div class="use-case">Use when: You want to improve code quality</div>
+                <textarea class="prompt-area" rows="3">Please review this [language] code for [security vulnerabilities / performance issues / best practices / readability]. Suggest specific improvements with explanations.
+
+[paste code]</textarea>
+                <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy</button>
+            </div>
+
+            <div class="template-card">
+                <h3>#13 — Optimize Performance</h3>
+                <div class="use-case">Use when: Code works but is slow</div>
+                <textarea class="prompt-area" rows="3">This [language] code works correctly but is too slow for [describe use case / data size]. Can you identify performance bottlenecks and suggest optimizations? Explain the trade-offs of each suggestion.
+
+[paste code]</textarea>
+                <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy</button>
+            </div>
+        </div>
+
+        <!-- Section 5: Report Writing -->
+        <div class="section">
+            <h2>5. Report Writing <span class="badge badge-report">Report</span></h2>
+
+            <div class="template-card">
+                <h3>#14 — Structure a Report Section</h3>
+                <div class="use-case">Use when: Planning what to write in a section</div>
+                <textarea class="prompt-area" rows="3">I'm writing the [section name: Introduction / Literature Review / Methodology / Results / Conclusion] of my senior project report about [project description]. I've implemented these features: [list]. Can you suggest a logical structure with subsections that flows well?</textarea>
+                <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy</button>
+            </div>
+
+            <div class="template-card">
+                <h3>#15 — Improve Technical Writing</h3>
+                <div class="use-case">Use when: Your draft feels too casual or unclear</div>
+                <textarea class="prompt-area" rows="3">Here's a paragraph from my technical report. It feels [too casual / unclear / too long / poorly structured]. Can you suggest ways to make it more professional and technical while keeping it clear? Keep my main ideas.
+
+[paste paragraph]</textarea>
+                <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy</button>
+            </div>
+
+            <div class="template-card">
+                <h3>#16 — Write a Diagram Caption</h3>
+                <div class="use-case">Use when: You need to describe a figure in your report</div>
+                <textarea class="prompt-area" rows="3">I have a [type: network topology / system architecture / flowchart / UML] diagram showing: [describe what the diagram shows]. Help me write a clear caption (1-2 sentences) and a paragraph explaining what the diagram shows for my report.</textarea>
+                <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy</button>
+            </div>
+
+            <div class="template-card">
+                <h3>#17 — Write an Abstract</h3>
+                <div class="use-case">Use when: Summarizing your entire project in ~250 words</div>
+                <textarea class="prompt-area" rows="4">Help me write an abstract for my senior project. Here are the key details:
+- Project: [title and brief description]
+- Problem: [what problem does it solve]
+- Approach: [how you solved it]
+- Key Results: [main outcomes / metrics]
+- Technologies: [main tech stack]
+Keep it under 250 words, formal academic tone.</textarea>
+                <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy</button>
+            </div>
+
+            <div class="template-card">
+                <h3>#18 — Generate References in a Format</h3>
+                <div class="use-case">Use when: Formatting citations for your bibliography</div>
+                <textarea class="prompt-area" rows="3">Format these sources in [IEEE / APA / Harvard] citation style for my bibliography:
+
+1. [paste source info: title, author, year, URL, etc.]
+2. [paste source info]
+3. [paste source info]</textarea>
+                <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy</button>
+            </div>
+        </div>
+
+        <!-- Section 6: Design & Architecture -->
+        <div class="section">
+            <h2>6. Design & Architecture <span class="badge badge-design">Design</span></h2>
+
+            <div class="template-card">
+                <h3>#19 — Design a Database Schema</h3>
+                <div class="use-case">Use when: Planning your data model</div>
+                <textarea class="prompt-area" rows="4">I'm building [project description] and need a database schema. The system needs to store:
+- [entity 1 and its attributes]
+- [entity 2 and its attributes]
+- [relationships between entities]
+Can you suggest a schema with tables, fields, and relationships? Use [SQL / NoSQL / specify DB].</textarea>
+                <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy</button>
+            </div>
+
+            <div class="template-card">
+                <h3>#20 — Design an API</h3>
+                <div class="use-case">Use when: Planning your REST API endpoints</div>
+                <textarea class="prompt-area" rows="4">I'm building a REST API for [project description]. The system needs these features:
+- [feature 1]
+- [feature 2]
+- [feature 3]
+Can you suggest API endpoints (method, URL, request/response body) following REST conventions?</textarea>
+                <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy</button>
+            </div>
+
+            <div class="template-card">
+                <h3>#21 — Plan Test Cases</h3>
+                <div class="use-case">Use when: Preparing to test your project</div>
+                <textarea class="prompt-area" rows="3">Generate 10 test cases for this [function / feature / API endpoint]: [paste code or describe feature]. Include normal cases, edge cases, and potential failure scenarios. Format as a table with: Test ID, Description, Input, Expected Output, Pass/Fail.</textarea>
+                <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy</button>
+            </div>
+        </div>
+
+        <!-- Section 7: Presentation Prep -->
+        <div class="section">
+            <h2>7. Presentation & Defense Prep <span class="badge badge-research">Prep</span></h2>
+
+            <div class="template-card">
+                <h3>#22 — Prepare for Defense Questions</h3>
+                <div class="use-case">Use when: Getting ready for your project defense</div>
+                <textarea class="prompt-area" rows="4">My senior project is about [project description]. I used [technologies]. The main features are [list features]. 
+
+Act as a university professor on my defense committee. Ask me 10 tough questions they might ask, focusing on: (1) technical decisions, (2) challenges faced, (3) alternative approaches, (4) future improvements.</textarea>
+                <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy</button>
+            </div>
+
+            <div class="template-card">
+                <h3>#23 — Structure Your Presentation</h3>
+                <div class="use-case">Use when: Building your defense slides</div>
+                <textarea class="prompt-area" rows="3">I have [X minutes] to present my senior project about [project description]. Suggest an outline with time allocation for each section. I need to cover: problem statement, approach, demo, results, and conclusion. What should I emphasize most?</textarea>
+                <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy</button>
+            </div>
+
+            <div class="template-card">
+                <h3>#24 — Explain Your Project Simply</h3>
+                <div class="use-case">Use when: Practicing how to explain your project</div>
+                <textarea class="prompt-area" rows="3">Help me explain my senior project in simple terms for a non-technical audience (like a family member). My project: [describe project, features, technologies]. Give me a 30-second elevator pitch and a 2-minute explanation.</textarea>
+                <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy</button>
+            </div>
+        </div>
+
+        <!-- Bonus Tips -->
+        <div class="section">
+            <h2>Bonus: Prompt Engineering Tips</h2>
+
+            <div class="tip-box">
+                <h3>🎯 The Formula</h3>
+                <p style="font-size: 1.1em; margin: 10px 0;"><strong>Context + Specific Question + Expected Outcome = Great Prompt</strong></p>
+                <p>"I'm building [context]. I'm trying to [goal] but [problem]. [Specific question]?"</p>
+            </div>
+
+            <div class="tip-box">
+                <h3>🔄 Iterate on Your Prompts</h3>
+                <ul>
+                    <li>If the first response isn't useful, add more context</li>
+                    <li>Ask follow-up questions to dig deeper</li>
+                    <li>Say "Can you be more specific about [X]?"</li>
+                    <li>Try "Explain it differently" or "Give me a concrete example"</li>
+                </ul>
+            </div>
+
+            <div class="tip-box">
+                <h3>⚠️ Always Remember</h3>
+                <ul>
+                    <li>AI can be confidently wrong — always verify</li>
+                    <li>Don't share sensitive credentials or passwords</li>
+                    <li>Use AI to LEARN, not to avoid learning</li>
+                    <li>If you can't explain the AI's answer, you don't understand it yet</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="button-group">
+            <button class="btn btn-primary" onclick="window.print()">🖨️ Print This Document</button>
+            <button class="btn btn-secondary" onclick="resetAll()">🔄 Reset All to Defaults</button>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; color: #718096; padding-top: 20px; border-top: 1px solid #e2e8f0;">
+            <p>Created by LIU Engineering Club</p>
+            <p><a href="mailto:yousef.r.younis@gmail.com" style="color: #667eea;">yousef.r.younis@gmail.com</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Store default values
+        const defaults = {};
+        document.querySelectorAll('.prompt-area').forEach((el, i) => {
+            defaults[i] = el.value;
+        });
+
+        function copyPrompt(btn) {
+            const textarea = btn.parentElement.querySelector('.prompt-area');
+            navigator.clipboard.writeText(textarea.value).then(() => {
+                btn.textContent = '✅ Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = '📋 Copy';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        function resetAll() {
+            if (confirm('Reset all prompts to their default templates?')) {
+                document.querySelectorAll('.prompt-area').forEach((el, i) => {
+                    el.value = defaults[i];
+                });
+            }
+        }
+    </script>
+</body>
+</html>

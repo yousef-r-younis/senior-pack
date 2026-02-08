@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Integrity Checklist - Senior Project Workshop</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f7fafc;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .section {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .section h2 {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+        }
+
+        .section h3 {
+            color: #4a5568;
+            font-size: 1.25em;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+
+        .section p {
+            color: #4a5568;
+            margin-bottom: 15px;
+        }
+
+        .section ul, .section ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        .section li {
+            color: #4a5568;
+            margin-bottom: 8px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Checklist Category Cards */
+        .checklist-category {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px 25px;
+            margin: 20px 0;
+            transition: border-color 0.3s;
+        }
+
+        .checklist-category:hover {
+            border-color: #667eea;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .category-icon {
+            font-size: 2em;
+        }
+
+        .category-header h3 {
+            color: #2d3748;
+            font-size: 1.3em;
+            margin: 0;
+        }
+
+        .category-header p {
+            color: #718096;
+            font-size: 0.95em;
+            margin: 0;
+        }
+
+        .checklist {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .checklist li {
+            display: flex;
+            align-items: flex-start;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+            gap: 12px;
+        }
+
+        .checklist li:last-child {
+            border-bottom: none;
+        }
+
+        .checklist input[type="checkbox"] {
+            width: 22px;
+            height: 22px;
+            min-width: 22px;
+            margin-top: 2px;
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+
+        .checklist label {
+            color: #4a5568;
+            cursor: pointer;
+            font-size: 1.02em;
+            line-height: 1.6;
+        }
+
+        .checklist label strong {
+            color: #2d3748;
+        }
+
+        .checklist input[type="checkbox"]:checked + label {
+            text-decoration: line-through;
+            color: #a0aec0;
+        }
+
+        .checklist input[type="checkbox"]:checked + label strong {
+            color: #a0aec0;
+        }
+
+        /* Progress Bar */
+        .progress-section {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px 25px;
+            margin: 10px 0 20px 0;
+            text-align: center;
+            transition: border-color 0.3s;
+        }
+
+        .progress-section:hover {
+            border-color: #667eea;
+        }
+
+        .progress-section h3 {
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: #edf2f7;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 15px;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.85em;
+        }
+
+        .progress-text {
+            color: #718096;
+            margin-top: 5px;
+        }
+
+        /* Status Boxes */
+        .tip-box {
+            background: #edf2f7;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .tip-box h3, .tip-box h4 {
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+
+        .tip-box ul {
+            margin-left: 25px;
+        }
+
+        .tip-box li {
+            margin-bottom: 6px;
+            color: #2d3748;
+        }
+
+        .info-box {
+            background: #ebf8ff;
+            border-left: 4px solid #4299e1;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+
+        .success-box {
+            background: #f0fff4;
+            border-left: 4px solid #48bb78;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+
+        .warning-box {
+            background: #fffaf0;
+            border-left: 4px solid #ed8936;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+
+        /* Comparison Grid */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .ok-card {
+            background: #f0fff4;
+            border: 2px solid #48bb78;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .ok-card h4 {
+            color: #38a169;
+            margin-bottom: 12px;
+            font-size: 1.1em;
+        }
+
+        .notok-card {
+            background: #fff5f5;
+            border: 2px solid #f56565;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .notok-card h4 {
+            color: #e53e3e;
+            margin-bottom: 12px;
+            font-size: 1.1em;
+        }
+
+        .ok-card ul, .notok-card ul {
+            margin-left: 20px;
+        }
+
+        .ok-card li, .notok-card li {
+            color: #4a5568;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+
+        /* Statement/Template Boxes */
+        .statement-box {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px 25px;
+            margin: 20px 0;
+            transition: border-color 0.3s;
+        }
+
+        .statement-box:hover {
+            border-color: #667eea;
+        }
+
+        .statement-box h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .statement-box .editable {
+            width: 100%;
+            min-height: 150px;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 0.98em;
+            line-height: 1.7;
+            color: #4a5568;
+            resize: vertical;
+        }
+
+        .statement-box .editable:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+            background: white;
+        }
+
+        .copy-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85em;
+            margin-top: 8px;
+            transition: background 0.3s;
+        }
+
+        .copy-btn:hover {
+            background: #5a67d8;
+        }
+
+        .copy-btn.copied {
+            background: #48bb78;
+        }
+
+        /* Quick Reference Table */
+        .ref-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .ref-table th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        .ref-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e2e8f0;
+            color: #4a5568;
+        }
+
+        .ref-table tr:nth-child(even) {
+            background: #f7fafc;
+        }
+
+        .ref-table .status-ok {
+            color: #38a169;
+            font-weight: 700;
+        }
+
+        .ref-table .status-bad {
+            color: #e53e3e;
+            font-weight: 700;
+        }
+
+        .ref-table .status-warn {
+            color: #dd6b20;
+            font-weight: 700;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.95em;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #2d3748;
+        }
+
+        .btn-secondary:hover {
+            background: #cbd5e0;
+        }
+
+        @media print {
+            body { background: white; }
+            .button-group, .copy-btn { display: none; }
+            .section {
+                box-shadow: none;
+                border: 1px solid #e2e8f0;
+                page-break-inside: avoid;
+            }
+            .progress-section { display: none; }
+            .checklist input[type="checkbox"] {
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8em; }
+            .container { padding: 20px 15px; }
+            .comparison-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../module3.html" class="back-link">← Back to Module 3</a>
+
+        <div class="header">
+            <h1>📋 Academic Integrity Checklist</h1>
+            <p>Ethical AI use guidelines for your senior project</p>
+            <p style="margin-top: 10px; opacity: 0.8;">Check off each item as you complete it — your progress is saved automatically</p>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="section">
+            <div class="progress-section">
+                <h3>Your Progress</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill" style="width: 0%;">0%</div>
+                </div>
+                <p class="progress-text"><span id="checked-count">0</span> of <span id="total-count">0</span> items completed</p>
+            </div>
+        </div>
+
+        <!-- Category 1: Before Starting -->
+        <div class="section">
+            <h2>📝 Before You Start Your Project</h2>
+            <div class="checklist-category">
+                <ul class="checklist">
+                    <li>
+                        <input type="checkbox" id="c1" onchange="updateProgress()">
+                        <label for="c1"><strong>Read your university's AI policy</strong> — Check LIU's official stance on AI tool usage in academic work. Ask your advisor if unsure.</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="c2" onchange="updateProgress()">
+                        <label for="c2"><strong>Discuss AI use with your advisor</strong> — Get explicit approval for which AI tools you plan to use and how.</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="c3" onchange="updateProgress()">
+                        <label for="c3"><strong>Understand the boundaries</strong> — Know the difference between acceptable assistance and academic dishonesty (see the reference table below).</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="c4" onchange="updateProgress()">
+                        <label for="c4"><strong>Set up an AI usage log</strong> — Create a document/spreadsheet to track every significant AI interaction during your project.</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="c5" onchange="updateProgress()">
+                        <label for="c5"><strong>Learn to prompt responsibly</strong> — Practice writing prompts that help you learn rather than do your work for you.</label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Category 2: During Code Development -->
+        <div class="section">
+            <h2>💻 During Code Development</h2>
+            <div class="checklist-category">
+                <ul class="checklist">
+                    <li>
+                        <input type="checkbox" id="c6" onchange="updateProgress()">
+                        <label for="c6"><strong>Understand every line of AI-generated code</strong> — Before using any code from Copilot or ChatGPT, make sure you can explain what it does.</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="c7" onchange="updateProgress()">
+                        <label for="c7"><strong>Comment AI-assisted sections</strong> — Add comments like <code>// AI-assisted: Generated boilerplate, customized by [your name]</code> where appropriate.</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="c8" onchange="updateProgress()">
+                        <label for="c8"><strong>Customize, don't copy-paste</strong> — Always adapt AI suggestions to your specific project needs rather than using them verbatim.</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="c9" onchange="updateProgress()">
+                        <label for="c9"><strong>Test all AI-generated code</strong> — Run tests and verify the code works correctly in your specific context.</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="c10" onchange="updateProgress()">
+                        <label for="c10"><strong>Try yourself first</strong> — Attempt to solve problems for 15-30 minutes before asking AI for help.</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="c11" onchange="updateProgress()">
+                        <label for="c11"><strong>Don't paste sensitive data</strong> — Never share passwords, API keys, or proprietary data with AI tools.</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="c12" onchange="updateProgress()">
+                        <label for="c12"><strong>Log significant AI help</strong> — Record when AI helped solve a major bug or generate a key component.</label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Category 3: Report Writing -->
+        <div class="section">
+            <h2>📄 Report & Documentation Writing</h2>
+            <div class="checklist-category">
+                <ul class="checklist">
+                    <li>
+                        <input type="checkbox" id="c13" onchange="updateProgress()">
+                        <label for="c13"><strong>Write your own first draft</strong> — Always start with YOUR ideas and words. Use AI only to refine, not generate from scratch.</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="c14" onchange="updateProgress()">
+                        <label for="c14"><strong>Use AI for improvement, not creation</strong> — Ask "make this clearer" not "write a methodology section for me."</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="c15" onchange="updateProgress()">
+                        <label for="c15"><strong>Verify all AI-suggested facts</strong> — AI can hallucinate. Cross-reference any technical claims with official documentation or papers.</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="c16" onchange="updateProgress()">
+                        <label for="c16"><strong>Don't fabricate data or results</strong> — Never use AI to generate fake test results, measurements, or experimental data.</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="c17" onchange="updateProgress()">
+                        <label for="c17"><strong>Cite properly</strong> — If AI helps you find a paper or source, verify and cite the actual source, not the AI.</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="c18" onchange="updateProgress()">
+                        <label for="c18"><strong>Run plagiarism check</strong> — Before submission, check your report through a plagiarism detection tool (Turnitin, Grammarly, etc.).</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="c19" onchange="updateProgress()">
+                        <label for="c19"><strong>Final human review</strong> — Read through the entire report yourself. Every sentence should sound like YOU. Remove anything you can't explain.</label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Category 4: Presentation & Defense -->
+        <div class="section">
+            <h2>🎤 Presentation & Defense Prep</h2>
+            <div class="checklist-category">
+                <ul class="checklist">
+                    <li>
+                        <input type="checkbox" id="c20" onchange="updateProgress()">
+                        <label for="c20"><strong>The "Explain It" test</strong> — Can you explain every part of your project to your committee without referencing AI? Practice this.</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="c21" onchange="updateProgress()">
+                        <label for="c21"><strong>Know your code inside-out</strong> — Be prepared to explain any function, any design decision, any algorithm in your project.</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="c22" onchange="updateProgress()">
+                        <label for="c22"><strong>Prepare for "Why?" questions</strong> — Committees love asking "Why did you choose X over Y?" — know your reasoning, not AI's.</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="c23" onchange="updateProgress()">
+                        <label for="c23"><strong>Be honest about AI use</strong> — If asked, be transparent about how you used AI tools. Honesty is always respected.</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="c24" onchange="updateProgress()">
+                        <label for="c24"><strong>Practice live coding</strong> — Some committees ask you to modify code live. Make sure you can code without AI assistance.</label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Category 5: Final Submission -->
+        <div class="section">
+            <h2>✅ Final Submission Review</h2>
+            <div class="checklist-category">
+                <ul class="checklist">
+                    <li>
+                        <input type="checkbox" id="c25" onchange="updateProgress()">
+                        <label for="c25"><strong>Add AI acknowledgment to your report</strong> — Include a statement in Acknowledgments or Methodology about your AI tool usage (see template below).</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="c26" onchange="updateProgress()">
+                        <label for="c26"><strong>Review AI usage log</strong> — Go through your log and ensure all significant AI interactions are documented.</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="c27" onchange="updateProgress()">
+                        <label for="c27"><strong>Check for AI-style writing</strong> — AI text often has a specific style (overly formal, repetitive structure). Make sure your report sounds like you.</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="c28" onchange="updateProgress()">
+                        <label for="c28"><strong>Verify all references</strong> — Make sure every citation actually exists and says what you claim it does.</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="c29" onchange="updateProgress()">
+                        <label for="c29"><strong>Get a peer review</strong> — Have a classmate or friend read your report. Fresh eyes catch AI-sounding text.</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="c30" onchange="updateProgress()">
+                        <label for="c30"><strong>Final confidence check</strong> — Read everything one more time. Can you stand behind every word as your own work? If yes, you're ready!</label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Quick Reference Table -->
+        <div class="section">
+            <h2>Quick Reference: OK vs. Not OK</h2>
+
+            <table class="ref-table">
+                <thead>
+                    <tr>
+                        <th>AI Usage</th>
+                        <th>Status</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ask AI to explain a concept you don't understand</td>
+                        <td class="status-ok">✅ OK</td>
+                        <td>Great way to learn faster</td>
+                    </tr>
+                    <tr>
+                        <td>Use Copilot for boilerplate code, then customize</td>
+                        <td class="status-ok">✅ OK</td>
+                        <td>Save time on repetitive tasks</td>
+                    </tr>
+                    <tr>
+                        <td>Ask AI to debug your code and explain the fix</td>
+                        <td class="status-ok">✅ OK</td>
+                        <td>Make sure you understand the fix</td>
+                    </tr>
+                    <tr>
+                        <td>Ask AI to improve your writing style/clarity</td>
+                        <td class="status-ok">✅ OK</td>
+                        <td>Your ideas, improved expression</td>
+                    </tr>
+                    <tr>
+                        <td>Use AI to brainstorm solutions to a problem</td>
+                        <td class="status-ok">✅ OK</td>
+                        <td>Evaluate and choose the best one yourself</td>
+                    </tr>
+                    <tr>
+                        <td>Ask AI to summarize a research paper</td>
+                        <td class="status-ok">✅ OK</td>
+                        <td>Still read the paper yourself; verify summary</td>
+                    </tr>
+                    <tr>
+                        <td>Ask AI to generate test cases for your code</td>
+                        <td class="status-ok">✅ OK</td>
+                        <td>Review and add your own edge cases</td>
+                    </tr>
+                    <tr>
+                        <td>Use AI-generated code without understanding it</td>
+                        <td class="status-bad">❌ NOT OK</td>
+                        <td>You must understand every line</td>
+                    </tr>
+                    <tr>
+                        <td>Have AI write entire report sections for you</td>
+                        <td class="status-bad">❌ NOT OK</td>
+                        <td>Plagiarism — your words should be yours</td>
+                    </tr>
+                    <tr>
+                        <td>Copy AI code without testing or customizing</td>
+                        <td class="status-bad">❌ NOT OK</td>
+                        <td>May not work; shows lack of understanding</td>
+                    </tr>
+                    <tr>
+                        <td>Use AI to fabricate data or results</td>
+                        <td class="status-bad">❌ NOT OK</td>
+                        <td>Academic fraud — serious consequences</td>
+                    </tr>
+                    <tr>
+                        <td>Submit AI-generated text as your own writing</td>
+                        <td class="status-bad">❌ NOT OK</td>
+                        <td>Plagiarism regardless of source</td>
+                    </tr>
+                    <tr>
+                        <td>Use AI instead of learning the material</td>
+                        <td class="status-bad">❌ NOT OK</td>
+                        <td>You won't be able to defend your work</td>
+                    </tr>
+                    <tr>
+                        <td>Ask AI to generate outline/structure for report</td>
+                        <td class="status-warn">⚠️ USE CAUTION</td>
+                        <td>OK for inspiration but write content yourself</td>
+                    </tr>
+                    <tr>
+                        <td>Translate technical content using AI</td>
+                        <td class="status-warn">⚠️ USE CAUTION</td>
+                        <td>Always review for accuracy; add your voice</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- The Understanding Test -->
+        <div class="section">
+            <h2>The Understanding Test</h2>
+            <p>Before using ANY AI-generated content (code or text), ask yourself these questions:</p>
+
+            <div class="comparison-grid">
+                <div class="ok-card">
+                    <h4>✅ You Pass If You Can:</h4>
+                    <ul>
+                        <li>Explain the code line by line to your advisor</li>
+                        <li>Modify the code if requirements change</li>
+                        <li>Debug it when something breaks</li>
+                        <li>Justify why this approach was chosen</li>
+                        <li>Write something similar without AI next time</li>
+                        <li>Answer "why?" questions about design decisions</li>
+                    </ul>
+                </div>
+                <div class="notok-card">
+                    <h4>❌ Red Flags (Learn More First):</h4>
+                    <ul>
+                        <li>"I don't know what this line does"</li>
+                        <li>"It works, but I'm not sure why"</li>
+                        <li>"AI said to do it this way"</li>
+                        <li>"I'd need to ask AI to modify it"</li>
+                        <li>"I just copied the suggestion"</li>
+                        <li>"I can't explain the algorithm"</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <h4>💡 What to Do When You Don't Pass</h4>
+                <ul>
+                    <li>Ask the AI to <strong>explain</strong> the code step by step</li>
+                    <li>Try to <strong>rewrite it yourself</strong> from understanding</li>
+                    <li>Ask the AI to <strong>quiz you</strong> on the concept</li>
+                    <li>Look up the <strong>official documentation</strong> for the technology</li>
+                    <li>Discuss with <strong>teammates or advisor</strong> until you understand</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- AI Acknowledgment Templates -->
+        <div class="section">
+            <h2>AI Acknowledgment Templates</h2>
+            <p>Use one of these templates in your report. Edit it to match your actual AI usage.</p>
+
+            <div class="statement-box">
+                <h3>📝 Template 1: For Acknowledgments Section</h3>
+                <textarea class="editable" id="template1">AI tools, including GitHub Copilot and Claude, were used during the development of this project. Specifically, GitHub Copilot assisted with generating boilerplate code and code suggestions, while Claude was used for debugging assistance, understanding technical concepts, and reviewing code quality. All AI-generated code was reviewed, tested, and customized by the authors. The final implementations and all written content in this report are the original work of the authors.</textarea>
+                <br>
+                <button class="copy-btn" onclick="copyTemplate('template1')">📋 Copy</button>
+            </div>
+
+            <div class="statement-box">
+                <h3>📝 Template 2: For Methodology Section</h3>
+                <textarea class="editable" id="template2">As part of our development workflow, we utilized AI-assisted tools to improve efficiency. GitHub Copilot was integrated into our VS Code environment for code completion and boilerplate generation. Claude (by Anthropic) was consulted for debugging complex configuration issues and understanding unfamiliar protocols. ChatGPT was used for research summaries and brainstorming solutions. In all cases, AI output was critically evaluated, tested, and adapted to our specific requirements. We maintained a log of significant AI interactions throughout the project.</textarea>
+                <br>
+                <button class="copy-btn" onclick="copyTemplate('template2')">📋 Copy</button>
+            </div>
+
+            <div class="statement-box">
+                <h3>📝 Template 3: Minimal Version</h3>
+                <textarea class="editable" id="template3">AI development tools (GitHub Copilot, Claude) were used to assist with code development and debugging. All code was reviewed and verified by the authors. Written content is entirely original work by the authors.</textarea>
+                <br>
+                <button class="copy-btn" onclick="copyTemplate('template3')">📋 Copy</button>
+            </div>
+        </div>
+
+        <!-- AI Usage Log Template -->
+        <div class="section">
+            <h2>AI Usage Log Template</h2>
+            <p>Keep a running record of significant AI interactions. Here's a format you can use:</p>
+
+            <table class="ref-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>AI Tool</th>
+                        <th>What You Asked</th>
+                        <th>How You Used the Response</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><em>Example: Jan 15</em></td>
+                        <td><em>Claude</em></td>
+                        <td><em>Explain WireGuard vs OpenVPN trade-offs</em></td>
+                        <td><em>Used explanation to write literature review comparison paragraph (in my own words)</em></td>
+                    </tr>
+                    <tr>
+                        <td><em>Example: Jan 20</em></td>
+                        <td><em>Copilot</em></td>
+                        <td><em>Generated REST API endpoint boilerplate</em></td>
+                        <td><em>Customized for our device monitoring feature, added error handling</em></td>
+                    </tr>
+                    <tr>
+                        <td><em>Example: Feb 3</em></td>
+                        <td><em>ChatGPT</em></td>
+                        <td><em>Debug firewall config — traffic not routing</em></td>
+                        <td><em>Found missing AllowedIPs config. Learned the concept, applied fix myself</em></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-box">
+                <p><strong>💡 Tip:</strong> You don't need to log every Copilot autocomplete. Focus on significant interactions: major debugging help, architecture decisions, large code generations, report writing assistance.</p>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="button-group">
+            <button class="btn btn-primary" onclick="window.print()">🖨️ Print This Document</button>
+            <button class="btn btn-secondary" onclick="resetAll()">🔄 Reset All Checkboxes</button>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; color: #718096; padding-top: 20px; border-top: 1px solid #e2e8f0;">
+            <p>Created by LIU Engineering Club</p>
+            <p><a href="mailto:yousef.r.younis@gmail.com" style="color: #667eea;">yousef.r.younis@gmail.com</a></p>
+        </div>
+    </div>
+
+    <script>
+        const STORAGE_KEY = 'academic-integrity-checklist';
+
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll('.checklist input[type="checkbox"]');
+            const total = checkboxes.length;
+            const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+            const pct = Math.round((checked / total) * 100);
+
+            document.getElementById('progress-fill').style.width = pct + '%';
+            document.getElementById('progress-fill').textContent = pct + '%';
+            document.getElementById('checked-count').textContent = checked;
+            document.getElementById('total-count').textContent = total;
+
+            saveProgress();
+        }
+
+        function saveProgress() {
+            const checkboxes = document.querySelectorAll('.checklist input[type="checkbox"]');
+            const state = {};
+            checkboxes.forEach(cb => {
+                state[cb.id] = cb.checked;
+            });
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        }
+
+        function loadProgress() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                const state = JSON.parse(saved);
+                Object.keys(state).forEach(id => {
+                    const cb = document.getElementById(id);
+                    if (cb) cb.checked = state[id];
+                });
+            }
+            updateProgress();
+        }
+
+        function resetAll() {
+            if (confirm('Reset all checkboxes? This cannot be undone.')) {
+                const checkboxes = document.querySelectorAll('.checklist input[type="checkbox"]');
+                checkboxes.forEach(cb => cb.checked = false);
+                localStorage.removeItem(STORAGE_KEY);
+                updateProgress();
+            }
+        }
+
+        function copyTemplate(id) {
+            const textarea = document.getElementById(id);
+            navigator.clipboard.writeText(textarea.value).then(() => {
+                const btn = textarea.parentElement.querySelector('.copy-btn');
+                btn.textContent = '✅ Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = '📋 Copy';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        // Initialize on load
+        window.addEventListener('load', loadProgress);
+    </script>
+</body>
+</html>

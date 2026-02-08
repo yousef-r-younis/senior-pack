@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git Cheat Sheet for Senior Projects</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f7fafc;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .section {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .section h2 {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .command-group {
+            margin-bottom: 25px;
+        }
+
+        .command-group h3 {
+            color: #2d3748;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .command {
+            background: #2d3748;
+            color: #48bb78;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            margin-bottom: 10px;
+            border-left: 4px solid #667eea;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .command-desc {
+            color: #718096;
+            font-size: 0.95em;
+            margin-top: 5px;
+            margin-left: 5px;
+        }
+
+        .tip-box {
+            background: #edf2f7;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .tip-box ul {
+            margin-left: 25px;
+            margin-top: 10px;
+        }
+
+        .tip-box li {
+            margin-bottom: 8px;
+            color: #2d3748;
+        }
+
+        .success-example {
+            background: #f0fff4;
+            border-left: 4px solid #48bb78;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .success-example h3 {
+            color: #22543d;
+            margin-bottom: 10px;
+        }
+
+        .success-example ul {
+            margin-left: 25px;
+        }
+
+        .success-example li {
+            margin-bottom: 8px;
+            color: #2d3748;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #f7fafc;
+        }
+
+        .print-button {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .print-button button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1em;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .print-button button:hover {
+            transform: scale(1.05);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .print-button {
+                display: none;
+            }
+            .section {
+                page-break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #e2e8f0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Modules</a>
+
+        <div class="header">
+            <h1>🔥 Git Cheat Sheet</h1>
+            <p>Essential Commands for Senior Projects</p>
+        </div>
+
+        <!-- Initial Setup -->
+        <div class="section">
+            <h2>1. Initial Setup</h2>
+            
+            <div class="command-group">
+                <h3>Configure Git for the First Time</h3>
+                <div class="command">git config --global user.name "Your Name"</div>
+                <div class="command-desc">Set your name for all commits</div>
+                
+                <div class="command">git config --global user.email "your.email@example.com"</div>
+                <div class="command-desc">Set your email for all commits</div>
+            </div>
+
+            <div class="command-group">
+                <h3>Start a New Repository</h3>
+                <div class="command">git init</div>
+                <div class="command-desc">Initialize a new Git repository in current folder</div>
+                
+                <div class="command">git clone https://github.com/username/repo.git</div>
+                <div class="command-desc">Copy an existing repository to your computer</div>
+            </div>
+        </div>
+
+        <!-- Daily Workflow -->
+        <div class="section">
+            <h2>2. Daily Workflow</h2>
+            
+            <div class="tip-box">
+                <strong>The Golden Rule:</strong> Commit early, commit often. Small commits are your friend!
+            </div>
+
+            <div class="command-group">
+                <h3>Check Status</h3>
+                <div class="command">git status</div>
+                <div class="command-desc">See which files have changed</div>
+                
+                <div class="command">git diff</div>
+                <div class="command-desc">See exactly what changed in your files</div>
+            </div>
+
+            <div class="command-group">
+                <h3>Stage and Commit</h3>
+                <div class="command">git add filename.txt</div>
+                <div class="command-desc">Stage specific file for commit</div>
+                
+                <div class="command">git add .</div>
+                <div class="command-desc">Stage ALL changed files for commit</div>
+                
+                <div class="command">git commit -m "Added VPN configuration module"</div>
+                <div class="command-desc">Save your changes with a message</div>
+            </div>
+
+            <div class="success-example">
+                <h3>✅ Good commit messages:</h3>
+                <ul>
+                    <li>"Added authentication system"</li>
+                    <li>"Fixed bug in database connection"</li>
+                    <li>"Updated documentation for API endpoints"</li>
+                </ul>
+            </div>
+
+            <div class="command-group">
+                <h3>Push to GitHub</h3>
+                <div class="command">git push</div>
+                <div class="command-desc">Upload your commits to GitHub</div>
+                
+                <div class="command">git push origin main</div>
+                <div class="command-desc">Push to specific branch (main or master)</div>
+            </div>
+        </div>
+
+        <!-- Remote Repositories -->
+        <div class="section">
+            <h2>3. Working with GitHub</h2>
+            
+            <div class="command-group">
+                <h3>Connect Your Local Repo to GitHub</h3>
+                <div class="command">git remote add origin https://github.com/username/repo.git</div>
+                <div class="command-desc">Link your local repo to GitHub</div>
+                
+                <div class="command">git remote -v</div>
+                <div class="command-desc">View all remote connections</div>
+            </div>
+
+            <div class="command-group">
+                <h3>First Time Push to GitHub</h3>
+                <div class="command">git push -u origin main</div>
+                <div class="command-desc">Push to GitHub and set main as default branch</div>
+            </div>
+
+            <div class="command-group">
+                <h3>Getting Updates</h3>
+                <div class="command">git pull</div>
+                <div class="command-desc">Download partner's changes from GitHub</div>
+                
+                <div class="command">git fetch</div>
+                <div class="command-desc">Check for updates without merging yet</div>
+            </div>
+        </div>
+
+        <!-- Branching -->
+        <div class="section">
+            <h2>4. Branching Workflow</h2>
+            
+            <div class="tip-box">
+                <strong>Why branches?</strong> Keep main stable. Develop features on separate branches. Merge when ready.
+            </div>
+
+            <div class="command-group">
+                <h3>Create and Switch Branches</h3>
+                <div class="command">git branch feature/vpn-setup</div>
+                <div class="command-desc">Create new branch</div>
+                
+                <div class="command">git checkout feature/vpn-setup</div>
+                <div class="command-desc">Switch to that branch</div>
+                
+                <div class="command">git checkout -b feature/vpn-setup</div>
+                <div class="command-desc">Create AND switch to new branch (shortcut)</div>
+            </div>
+
+            <div class="command-group">
+                <h3>List Branches</h3>
+                <div class="command">git branch</div>
+                <div class="command-desc">List all local branches</div>
+                
+                <div class="command">git branch -a</div>
+                <div class="command-desc">List all branches (local + remote)</div>
+            </div>
+
+            <div class="command-group">
+                <h3>Merge Branches</h3>
+                <div class="command">git checkout main</div>
+                <div class="command-desc">Switch back to main branch</div>
+                
+                <div class="command">git merge feature/vpn-setup</div>
+                <div class="command-desc">Merge feature branch into main</div>
+            </div>
+
+            <div class="command-group">
+                <h3>Delete Branches</h3>
+                <div class="command">git branch -d feature/vpn-setup</div>
+                <div class="command-desc">Delete merged branch</div>
+                
+                <div class="command">git push origin --delete feature/vpn-setup</div>
+                <div class="command-desc">Delete branch from GitHub</div>
+            </div>
+        </div>
+
+        <!-- Working with Partners -->
+        <div class="section">
+            <h2>5. Collaborating with Partners</h2>
+            
+            <div class="command-group">
+                <h3>Before Each Work Session</h3>
+                <div class="command">git pull</div>
+                <div class="command-desc">Get latest changes from partner</div>
+            </div>
+
+            <div class="command-group">
+                <h3>During Work Session</h3>
+                <div class="command">git status</div>
+                <div class="command-desc">Check what you've changed</div>
+                
+                <div class="command">git add .</div>
+                <div class="command-desc">Stage your changes</div>
+                
+                <div class="command">git commit -m "Implemented device monitoring"</div>
+                <div class="command-desc">Save with clear message</div>
+            </div>
+
+            <div class="command-group">
+                <h3>After Work Session</h3>
+                <div class="command">git push</div>
+                <div class="command-desc">Upload to GitHub for partner to access</div>
+            </div>
+
+            <div class="tip-box">
+                <strong>⚠️ Conflict Prevention:</strong>
+                <ul>
+                    <li>Pull before you start working</li>
+                    <li>Work on different files/branches when possible</li>
+                    <li>Commit and push frequently</li>
+                    <li>Communicate: "I'm working on X, don't touch it"</li>
+                </ul>
+            </div>
+
+            <div class="command-group">
+                <h3>If Conflict Happens</h3>
+                <div class="command">git status</div>
+                <div class="command-desc">See which files have conflicts</div>
+                
+                <div class="command">git merge --abort</div>
+                <div class="command-desc">Cancel merge and start over</div>
+            </div>
+        </div>
+
+        <!-- Fixing Mistakes -->
+        <div class="section">
+            <h2>6. Fixing Mistakes</h2>
+            
+            <div class="tip-box" style="background: #fff5f5; border-left-color: #f56565;">
+                <strong>Before You Run These Commands:</strong> Make sure you understand what you're undoing!
+            </div>
+
+            <div class="command-group">
+                <h3>Undo Unstaged Changes</h3>
+                <div class="command">git checkout -- filename.txt</div>
+                <div class="command-desc">Discard changes to a file (not yet staged)</div>
+                
+                <div class="command">git restore filename.txt</div>
+                <div class="command-desc">Modern way to discard changes</div>
+            </div>
+
+            <div class="command-group">
+                <h3>Undo Staged Changes</h3>
+                <div class="command">git reset HEAD filename.txt</div>
+                <div class="command-desc">Unstage a file</div>
+            </div>
+
+            <div class="command-group">
+                <h3>Undo Commits</h3>
+                <div class="command">git revert HEAD</div>
+                <div class="command-desc">Undo last commit (creates new commit)</div>
+                
+                <div class="command">git reset --soft HEAD~1</div>
+                <div class="command-desc">Undo last commit, keep changes staged</div>
+                
+                <div class="command">git reset --hard HEAD~1</div>
+                <div class="command-desc">⚠️ DANGER: Completely remove last commit</div>
+            </div>
+
+            <div class="command-group">
+                <h3>View History</h3>
+                <div class="command">git log</div>
+                <div class="command-desc">See all your commits</div>
+                
+                <div class="command">git log --oneline</div>
+                <div class="command-desc">See commits in compact format</div>
+            </div>
+        </div>
+
+        <!-- Quick Reference Table -->
+        <div class="section">
+            <h2>7. Quick Reference Table</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>What you want to do</th>
+                        <th>Command</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>See current status</td>
+                        <td><code>git status</code></td>
+                    </tr>
+                    <tr>
+                        <td>Add all changes</td>
+                        <td><code>git add .</code></td>
+                    </tr>
+                    <tr>
+                        <td>Save changes with message</td>
+                        <td><code>git commit -m "message"</code></td>
+                    </tr>
+                    <tr>
+                        <td>Upload to GitHub</td>
+                        <td><code>git push</code></td>
+                    </tr>
+                    <tr>
+                        <td>Download partner's work</td>
+                        <td><code>git pull</code></td>
+                    </tr>
+                    <tr>
+                        <td>Create new branch</td>
+                        <td><code>git checkout -b branch-name</code></td>
+                    </tr>
+                    <tr>
+                        <td>Switch branches</td>
+                        <td><code>git checkout branch-name</code></td>
+                    </tr>
+                    <tr>
+                        <td>Merge branch to main</td>
+                        <td><code>git merge branch-name</code></td>
+                    </tr>
+                    <tr>
+                        <td>See commit history</td>
+                        <td><code>git log --oneline</code></td>
+                    </tr>
+                    <tr>
+                        <td>Undo unsaved changes</td>
+                        <td><code>git checkout -- filename</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Best Practices -->
+        <div class="section">
+            <h2>8. Git Best Practices for Senior Projects</h2>
+            
+            <div class="success-example">
+                <h3>✅ DO:</h3>
+                <ul>
+                    <li>Commit frequently (multiple times per day)</li>
+                    <li>Write clear, descriptive commit messages</li>
+                    <li>Pull before you start working</li>
+                    <li>Push at end of each work session</li>
+                    <li>Use branches for new features</li>
+                    <li>Test locally before pushing</li>
+                    <li>Communicate with partner about what you're working on</li>
+                </ul>
+            </div>
+
+            <div style="background: #fff5f5; border-left: 4px solid #f56565; padding: 15px; margin: 15px 0; border-radius: 4px;">
+                <h3 style="color: #c53030; margin-bottom: 10px;">❌ DON'T:</h3>
+                <ul style="margin-left: 25px;">
+                    <li>Commit everything at the last minute</li>
+                    <li>Write vague messages like "fixed stuff"</li>
+                    <li>Force push without checking first</li>
+                    <li>Work on main branch (use feature branches)</li>
+                    <li>Leave merge conflicts unresolved</li>
+                    <li>Commit binary files or node_modules</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="print-button">
+            <button onclick="window.print()">🖨️ Print This Cheat Sheet</button>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; color: #718096;">
+            <p>Created by LIU Engineering Club</p>
+            <p><a href="mailto:yousef.r.younis@gmail.com" style="color: #667eea;">yousef.r.younis@gmail.com</a></p>
+        </div>
+    </div>
+</body>
+</html>
