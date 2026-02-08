@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagram Examples for Senior Projects</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f7fafc;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .intro-box {
+            background: #ebf8ff;
+            border-left: 4px solid #4299e1;
+            padding: 20px 25px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 40px;
+        }
+
+        .intro-box h3 {
+            color: #2b6cb0;
+            margin-bottom: 10px;
+        }
+
+        .intro-box p {
+            color: #4a5568;
+        }
+
+        .intro-box a {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .diagram-section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .diagram-section h2 {
+            color: #2d3748;
+            font-size: 1.6em;
+            margin-bottom: 8px;
+            border-left: 5px solid #667eea;
+            padding-left: 15px;
+        }
+
+        .diagram-section .purpose {
+            color: #718096;
+            font-size: 1.05em;
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        .diagram-image {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .diagram-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+            border: 1px solid #e2e8f0;
+        }
+
+        .diagram-caption {
+            text-align: center;
+            color: #718096;
+            font-style: italic;
+            margin-top: 10px;
+            font-size: 0.95em;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .detail-card {
+            background: #f7fafc;
+            padding: 15px 20px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .detail-card h4 {
+            color: #4a5568;
+            margin-bottom: 8px;
+        }
+
+        .detail-card ul {
+            margin-left: 18px;
+            color: #4a5568;
+        }
+
+        .detail-card li {
+            margin-bottom: 4px;
+        }
+
+        .tip-box {
+            background: #f0fff4;
+            border-left: 4px solid #48bb78;
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 20px;
+        }
+
+        .tip-box h4 {
+            color: #276749;
+            margin-bottom: 5px;
+        }
+
+        .tip-box p {
+            color: #4a5568;
+        }
+
+        .tools-section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .tools-section h2 {
+            color: #2d3748;
+            font-size: 1.6em;
+            margin-bottom: 20px;
+            border-left: 5px solid #48bb78;
+            padding-left: 15px;
+        }
+
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .tool-item {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .tool-item h4 {
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+
+        .tool-item p {
+            color: #4a5568;
+            font-size: 0.95em;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #e2e8f0;
+            color: #718096;
+        }
+
+        .print-button {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+
+        .print-button:hover {
+            background: #5a67d8;
+        }
+
+        @media (max-width: 768px) {
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media print {
+            body { background: white; }
+            .container { padding: 20px; }
+            .diagram-section { box-shadow: none; page-break-inside: avoid; }
+            .back-link, .print-button { display: none; }
+        }
+    </style>
+    <link rel="icon" type="image/jpeg" href="../images/logo.jpg">
+</head>
+<body>
+    <img src="../images/logo.jpg" alt="LIU Engineering Club" style="position: fixed; bottom: 15px; right: 15px; width: 50px; height: 50px; border-radius: 50%; object-fit: cover; opacity: 0.85; z-index: 1000; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
+    <div class="container">
+        <a href="../module4.html" class="back-link">← Back to Module 4</a>
+
+        <div class="header">
+            <h1>📊 Diagram Examples for Senior Projects</h1>
+            <p>Real examples from the MY Smart Bridge Router project</p>
+        </div>
+
+        <div class="intro-box">
+            <h3>💡 About These Examples</h3>
+            <p>These are actual diagrams used in our senior project report. You can also view them in context by reading our 
+            <a href="CENG495 - CCE - Final Report - Moayad Salloum & Yousef Younis - MY Smart Bridge Router.pdf" target="_blank">full sample report (PDF)</a> to see how they were integrated into the document with proper captions, references, and surrounding text.</p>
+        </div>
+
+        <!-- Activity Diagram -->
+        <div class="diagram-section">
+            <h2>Activity Diagram</h2>
+            <p class="purpose">Shows the flow of activities and decision points in a process or workflow.</p>
+
+            <div class="diagram-image">
+                <img src="../images/activity-diagram.png" alt="Activity Diagram Example">
+                <p class="diagram-caption">Figure 1: Activity diagram showing process flow with decision points</p>
+            </div>
+
+            <div class="details-grid">
+                <div class="detail-card">
+                    <h4>📌 When to Use</h4>
+                    <ul>
+                        <li>Modeling business processes</li>
+                        <li>Showing workflow logic</li>
+                        <li>Documenting decision paths</li>
+                        <li>Implementation chapter</li>
+                    </ul>
+                </div>
+                <div class="detail-card">
+                    <h4>🔑 Key Elements</h4>
+                    <ul>
+                        <li>Start/End nodes (filled circles)</li>
+                        <li>Actions (rounded rectangles)</li>
+                        <li>Decision diamonds</li>
+                        <li>Arrows showing flow direction</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <h4>💡 Tip</h4>
+                <p>Keep activity diagrams focused on one specific process. If a diagram gets too complex, split it into sub-processes.</p>
+            </div>
+        </div>
+
+        <!-- Class Diagram -->
+        <div class="diagram-section">
+            <h2>Class Diagram</h2>
+            <p class="purpose">Shows the structure of your code — classes, attributes, methods, and relationships.</p>
+
+            <div class="diagram-image">
+                <img src="../images/class-diagram.png" alt="Class Diagram Example">
+                <p class="diagram-caption">Figure 2: Class diagram showing system code structure and relationships</p>
+            </div>
+
+            <div class="details-grid">
+                <div class="detail-card">
+                    <h4>📌 When to Use</h4>
+                    <ul>
+                        <li>Design & architecture chapter</li>
+                        <li>Object-oriented systems</li>
+                        <li>Showing code organization</li>
+                        <li>Database-related structures</li>
+                    </ul>
+                </div>
+                <div class="detail-card">
+                    <h4>🔑 Key Elements</h4>
+                    <ul>
+                        <li>Classes (name, attributes, methods)</li>
+                        <li>Associations (lines connecting classes)</li>
+                        <li>Inheritance (arrow with hollow head)</li>
+                        <li>Multiplicity (1..*, 0..1, etc.)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <h4>💡 Tip</h4>
+                <p>Don't include every single class — focus on the key classes that illustrate your system's architecture. Evaluators want to see your design decisions, not every getter/setter.</p>
+            </div>
+        </div>
+
+        <!-- Use Case Diagram -->
+        <div class="diagram-section">
+            <h2>Use Case Diagram</h2>
+            <p class="purpose">Shows how different users (actors) interact with your system's features.</p>
+
+            <div class="diagram-image">
+                <img src="../images/use-case-diagram.png" alt="Use Case Diagram Example">
+                <p class="diagram-caption">Figure 3: Use case diagram showing actor-system interactions</p>
+            </div>
+
+            <div class="details-grid">
+                <div class="detail-card">
+                    <h4>📌 When to Use</h4>
+                    <ul>
+                        <li>Requirements chapter</li>
+                        <li>Defining system scope</li>
+                        <li>Communicating with stakeholders</li>
+                        <li>Early design phase</li>
+                    </ul>
+                </div>
+                <div class="detail-card">
+                    <h4>🔑 Key Elements</h4>
+                    <ul>
+                        <li>Actors (stick figures)</li>
+                        <li>Use cases (ovals)</li>
+                        <li>System boundary (rectangle)</li>
+                        <li>Relationships (include, extend)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <h4>💡 Tip</h4>
+                <p>Group related use cases together and clearly label each actor. This diagram is great for showing evaluators the full scope of your project at a glance.</p>
+            </div>
+        </div>
+
+        <!-- Sequence Diagram -->
+        <div class="diagram-section">
+            <h2>Sequence Diagram</h2>
+            <p class="purpose">Shows how components interact with each other over time, step by step.</p>
+
+            <div class="diagram-image">
+                <img src="../images/sequence-diagram.png" alt="Sequence Diagram Example">
+                <p class="diagram-caption">Figure 4: Sequence diagram showing component interactions over time</p>
+            </div>
+
+            <div class="details-grid">
+                <div class="detail-card">
+                    <h4>📌 When to Use</h4>
+                    <ul>
+                        <li>API call flows</li>
+                        <li>Authentication processes</li>
+                        <li>Client-server interactions</li>
+                        <li>Implementation chapter</li>
+                    </ul>
+                </div>
+                <div class="detail-card">
+                    <h4>🔑 Key Elements</h4>
+                    <ul>
+                        <li>Lifelines (vertical dashed lines)</li>
+                        <li>Messages (horizontal arrows)</li>
+                        <li>Activation bars (thin rectangles)</li>
+                        <li>Return messages (dashed arrows)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <h4>💡 Tip</h4>
+                <p>Number your messages sequentially and keep the diagram reading left-to-right for the main flow. Add notes for complex steps that need extra explanation.</p>
+            </div>
+        </div>
+
+        <!-- System Architecture -->
+        <div class="diagram-section">
+            <h2>System Architecture Diagram</h2>
+            <p class="purpose">Shows the overall structure and components of your system and how they connect.</p>
+
+            <div class="diagram-image">
+                <img src="../images/system-arch.png" alt="System Architecture Diagram Example">
+                <p class="diagram-caption">Figure 5: System architecture diagram showing overall project structure</p>
+            </div>
+
+            <div class="details-grid">
+                <div class="detail-card">
+                    <h4>📌 When to Use</h4>
+                    <ul>
+                        <li>Design chapter (essential!)</li>
+                        <li>Project overview</li>
+                        <li>Showing technology stack</li>
+                        <li>Presentations</li>
+                    </ul>
+                </div>
+                <div class="detail-card">
+                    <h4>🔑 Key Elements</h4>
+                    <ul>
+                        <li>Components/modules (boxes)</li>
+                        <li>Connections (arrows)</li>
+                        <li>Data flow direction</li>
+                        <li>External services/APIs</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <h4>💡 Tip</h4>
+                <p>This is usually the first diagram evaluators look at. Make it clean, well-labeled, and ensure it tells the story of your entire system in one view.</p>
+            </div>
+        </div>
+
+        <!-- Tools Recommendation -->
+        <div class="tools-section">
+            <h2>🛠️ Recommended Tools</h2>
+            <div class="tool-grid">
+                <div class="tool-item">
+                    <h4>Draw.io (diagrams.net)</h4>
+                    <p>Free, web-based. Best for system architecture, flowcharts, and network diagrams. Export to PNG, SVG, PDF.</p>
+                </div>
+                <div class="tool-item">
+                    <h4>Astah UML</h4>
+                    <p>Best for UML diagrams — class, sequence, use case, activity. Free academic license available.</p>
+                </div>
+                <div class="tool-item">
+                    <h4>Lucidchart</h4>
+                    <p>Web-based with good templates. Free tier available. Great for collaborative diagramming.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>LIU Engineering Club - Senior Project Success Pack</p>
+            <button class="print-button" onclick="window.print()">🖨️ Print This Page</button>
+        </div>
+    </div>
+</body>
+</html>
